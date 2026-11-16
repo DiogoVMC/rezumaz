@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Quem fez o rezumaz: integrantes, RM e divisão de tarefas.">
+  <title>Equipe · rezumaz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800&display=swap">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <!-- Barra de acessibilidade: primeiro elemento da página, antes do
+       cabeçalho. Segue o padrão do e-MAG, com os atalhos de teclado
+       1 para o conteúdo, 2 para o menu e 6 para o alto contraste. -->
+  <div class="barra-acesso">
+    <div class="conteudo barra-acesso__linha">
+      <nav class="barra-acesso__atalhos" aria-label="Atalhos de acessibilidade">
+        <a class="barra-acesso__link" href="#conteudo" accesskey="1">
+          Ir para o conteúdo <span class="barra-acesso__tecla" aria-hidden="true">1</span>
+        </a>
+        <a class="barra-acesso__link" href="#menu" accesskey="2">
+          Ir para o menu <span class="barra-acesso__tecla" aria-hidden="true">2</span>
+        </a>
+      </nav>
+
+      <div class="controles-acesso">
+        <button class="controles-acesso__botao" type="button" id="fonte-menor"
+                aria-label="Diminuir o tamanho da letra">A&minus;</button>
+        <button class="controles-acesso__botao" type="button" id="fonte-maior"
+                aria-label="Aumentar o tamanho da letra">A+</button>
+        <button class="controles-acesso__botao" type="button" id="alto-contraste"
+                accesskey="6" aria-pressed="false">
+          Alto contraste <span class="barra-acesso__tecla" aria-hidden="true">6</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <header class="cabecalho">
+    <div class="conteudo cabecalho__linha">
+      <a class="marca" href="index.html">rezumaz</a>
+      <nav class="menu" id="menu" aria-label="Menu principal">
+        <ul class="menu__lista">
+          <li><a class="menu__link" href="index.html">Início</a></li>
+          <li><a class="menu__link" href="solucao.html">Solução</a></li>
+          <li><a class="menu__link" href="impacto.html">Impacto</a></li>
+          <li><a class="menu__link menu__link--ativo" href="equipe.html" aria-current="page">Equipe</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+
+    <section class="faixa" aria-labelledby="titulo-pagina">
+      <div class="conteudo">
+        <p class="rotulo">Equipe</p>
+        <h1 class="titulo-um" id="titulo-pagina">Quem fez</h1>
+        <p class="paragrafo">1ESOA · Engenharia de Software · FIAP</p>
+      </div>
+    </section>
+
+    <!-- ===== INTEGRANTES ===== -->
+    <section class="faixa faixa--linha" aria-labelledby="titulo-integrantes">
+      <div class="conteudo">
+        <h2 class="titulo-dois" id="titulo-integrantes">Integrantes</h2>
+
+        <ul class="grade grade--tres" id="lista-integrantes">
+          <li class="bloco bloco--contorno">
+            <p class="titulo-tres">Nome completo</p>
+            <p class="apoio">RM 000000</p>
+            <p class="apoio">O que fez no projeto</p>
+          </li>
+          <li class="bloco bloco--contorno">
+            <p class="titulo-tres">Nome completo</p>
+            <p class="apoio">RM 000000</p>
+            <p class="apoio">O que fez no projeto</p>
+          </li>
+          <li class="bloco bloco--contorno">
+            <p class="titulo-tres">Nome completo</p>
+            <p class="apoio">RM 000000</p>
+            <p class="apoio">O que fez no projeto</p>
+          </li>
+          <li class="bloco bloco--contorno">
+            <p class="titulo-tres">Nome completo</p>
+            <p class="apoio">RM 000000</p>
+            <p class="apoio">O que fez no projeto</p>
+          </li>
+          <li class="bloco bloco--contorno">
+            <p class="titulo-tres">Nome completo</p>
+            <p class="apoio">RM 000000</p>
+            <p class="apoio">O que fez no projeto</p>
+          </li>
+        </ul>
+
+        <div class="em-obra">
+          <p class="em-obra__titulo">Preencher</p>
+          <p class="em-obra__texto">
+            Nome completo e RM de cada um, exatamente como está na plataforma.
+            Os mesmos nomes precisam aparecer no arquivo de entrega e no README.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PITCH ===== -->
+    <section class="faixa faixa--suave" aria-labelledby="titulo-pitch">
+      <div class="conteudo">
+        <h2 class="titulo-dois" id="titulo-pitch">Vídeo pitch</h2>
+        <p class="paragrafo">
+          <a href="#" id="link-pitch">Colar aqui o link público do vídeo</a>
+        </p>
+        <div class="em-obra">
+          <p class="em-obra__titulo">Testar antes de entregar</p>
+          <p class="em-obra__texto">
+            Abrir o link em aba anônima. Se pedir login, o pitch não é avaliado.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="rodape">
+    <div class="conteudo rodape__linha">
+      <p>rezumaz · Global Solution 2026-2 · FIAP</p>
+      <p>Projeto acadêmico · nenhum dado sai do aparelho</p>
+    </div>
+  </footer>
+
+  <script src="js/visual.js"></script>
+</body>
+</html>

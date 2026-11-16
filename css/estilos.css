@@ -1,0 +1,1532 @@
+/* ==========================================================================
+   rezumaz · folha de estilo única
+   GS2 2026-2 · HTML, CSS e JS puros
+   Nenhum CSS fica dentro do HTML. Toda cor e tamanho mora aqui.
+   Ordem: variáveis · base · texto · cabeçalho · rodapé · botões ·
+          etapas · opções · áreas · grades · formulário · avisos ·
+          currículo · blocos · páginas vazias · responsivo · acessibilidade
+   ========================================================================== */
+
+/* ---------- 1. VARIÁVEIS ------------------------------------------------- */
+
+:root {
+  /* cores da marca */
+  --cobalto: #2D5BFF;
+  --coral: #FF6B4A;
+  --coral-escuro: #D1431F;
+  --coral-claro: #FFC4B4;
+  --coral-aviso: #FFE4DC;
+  --coral-aviso-texto: #A3341A;
+
+  /* texto */
+  --tinta: #111111;
+  --texto-apoio: #4A5060;
+  --texto-fraco: #6B7180;
+  --texto-marcador: #7D7364;
+
+  /* superfícies e linhas */
+  --branco: #FFFFFF;
+  --suave: #F7F7F5;
+  --linha: #E4E1DB;
+  --borda-campo: #948A7A;
+  --trilho: #EDEAE3;
+  --erro: #B42318;
+
+  /* forma */
+  --raio-card: 16px;
+  --raio-campo: 13px;
+  --raio-bloco: 18px;
+  --raio-redondo: 999px;
+  --borda: 2px;
+
+  /* espaço */
+  --margem-lateral: 20px;
+  --respiro: 20px;
+  --respiro-grande: 28px;
+  --largura-conteudo: 1080px;
+  --largura-estreita: 820px;
+
+  /* movimento */
+  --tempo: 0.18s;
+}
+
+/* ---------- 2. BASE ----------------------------------------------------- */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-size: 1.03125rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--tinta);
+  background: var(--branco);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* o navegador põe borda e padding no fieldset; a gente usa ele só para
+   agrupar pergunta e resposta, então limpa tudo */
+fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+legend {
+  padding: 0;
+}
+
+/* container padrão */
+.conteudo {
+  width: 100%;
+  max-width: var(--largura-conteudo);
+  margin: 0 auto;
+  padding: 0 var(--margem-lateral);
+}
+
+.conteudo--estreito {
+  max-width: var(--largura-estreita);
+}
+
+/* faixas de seção */
+.faixa {
+  padding: 32px 0;
+}
+
+.faixa--suave {
+  background: var(--suave);
+}
+
+.faixa--linha {
+  border-top: var(--borda) solid var(--trilho);
+}
+
+/* ---------- 3. TEXTO ---------------------------------------------------- */
+
+.titulo-um {
+  margin: 0 0 16px;
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: -1.2px;
+}
+
+.titulo-dois {
+  margin: 0 0 14px;
+  font-size: 1.375rem;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.7px;
+}
+
+.titulo-tres {
+  margin: 0 0 6px;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.rotulo {
+  margin: 0 0 8px;
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--texto-fraco);
+}
+
+.apoio {
+  margin: 0 0 12px;
+  font-size: 0.84375rem;
+  line-height: 1.45;
+  color: var(--texto-apoio);
+}
+
+.paragrafo {
+  margin: 0 0 16px;
+  font-size: 1.03125rem;
+  line-height: 1.5;
+}
+
+/* marca-texto coral atrás de uma palavra */
+.marca-texto {
+  padding: 0 4px;
+  background: linear-gradient(transparent 56%, var(--coral-claro) 56%);
+}
+
+.destaque {
+  color: var(--coral-escuro);
+}
+
+/* empilhamento vertical reutilizável */
+.pilha {
+  display: flex;
+  flex-direction: column;
+  gap: var(--respiro);
+}
+
+.pilha--curta {
+  gap: 10px;
+}
+
+/* dentro da pilha quem separa é o gap, então a margem sai */
+.pilha > * {
+  margin-bottom: 0;
+}
+
+/* último filho de um bloco nunca empurra o fundo do bloco */
+.bloco > :last-child,
+.folha > :last-child,
+.folha__secao > :last-child,
+.aviso > :last-child,
+.em-obra > :last-child,
+.passo > div > :last-child,
+.conteudo > :last-child {
+  margin-bottom: 0;
+}
+
+/* ---------- 4. CABEÇALHO E MENU ----------------------------------------- */
+
+.pular {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 10;
+  padding: 12px 18px;
+  background: var(--cobalto);
+  color: var(--branco);
+  font-weight: 700;
+  border-radius: 0 0 var(--raio-campo) 0;
+}
+
+.pular:focus {
+  left: 0;
+}
+
+.cabecalho {
+  border-bottom: var(--borda) solid var(--trilho);
+}
+
+.cabecalho__linha {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.marca {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.6px;
+  color: var(--tinta);
+  text-decoration: none;
+}
+
+.menu__lista {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menu__link {
+  display: block;
+  padding: 10px 14px;
+  border-radius: var(--raio-redondo);
+  font-size: 0.90625rem;
+  font-weight: 700;
+  color: var(--tinta);
+  text-decoration: none;
+  transition: background var(--tempo) ease;
+}
+
+.menu__link:hover {
+  background: var(--suave);
+}
+
+.menu__link--ativo {
+  background: var(--tinta);
+  color: var(--branco);
+}
+
+/* ---------- 5. RODAPÉ --------------------------------------------------- */
+
+.rodape {
+  margin-top: 40px;
+  border-top: var(--borda) solid var(--trilho);
+  background: var(--suave);
+}
+
+.rodape__linha {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-between;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  font-size: 0.8125rem;
+  color: var(--texto-apoio);
+}
+
+/* ---------- 6. BOTÕES --------------------------------------------------- */
+
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 17px 26px;
+  border: var(--borda) solid transparent;
+  border-radius: var(--raio-redondo);
+  font-family: inherit;
+  font-size: 1.03125rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background var(--tempo) ease, color var(--tempo) ease,
+    transform var(--tempo) ease;
+}
+
+.botao--principal {
+  background: var(--cobalto);
+  color: var(--branco);
+}
+
+.botao--principal:hover,
+.botao--principal:active {
+  background: var(--coral);
+  color: var(--tinta);
+  transform: scale(1.03);
+}
+
+.botao--marca {
+  background: var(--coral);
+  color: var(--tinta);
+}
+
+.botao--marca:hover,
+.botao--marca:active {
+  background: var(--cobalto);
+  color: var(--branco);
+  transform: scale(1.03);
+}
+
+.botao--contorno {
+  background: var(--branco);
+  border-color: var(--tinta);
+  color: var(--tinta);
+}
+
+.botao--contorno:hover,
+.botao--contorno:active {
+  background: var(--tinta);
+  color: var(--branco);
+  transform: scale(1.03);
+}
+
+.botao--largo {
+  display: flex;
+  width: 100%;
+}
+
+.botao--curto {
+  padding: 13px 20px;
+  font-size: 0.9375rem;
+}
+
+/* dupla voltar / continuar no fim de cada etapa */
+.navegacao-etapa {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 10px;
+  margin-top: var(--respiro-grande);
+}
+
+/* dentro da dupla ninguém usa o botão curto: tamanhos diferentes deixam a
+   linha torta. Os dois têm o mesmo padding e esticam para a mesma altura. */
+.navegacao-etapa .botao {
+  padding-top: 17px;
+  padding-bottom: 17px;
+  font-size: 1rem;
+}
+
+.navegacao-etapa .botao {
+  flex: 1 1 140px;
+  min-width: 0;
+}
+
+/* os dois downloads dividem a mesma linha, inclusive no celular */
+.botoes-dupla {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+}
+
+.botoes-dupla .botao {
+  flex: 1 1 0;
+  min-width: 0;
+  padding-left: 12px;
+  padding-right: 12px;
+  font-size: 0.9375rem;
+}
+
+/* ---------- 7. BARRA DE ETAPAS ------------------------------------------ */
+
+.etapa-cabeca {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: var(--respiro-grande);
+}
+
+.etapa-cabeca__trilho {
+  height: 10px;
+  border-radius: 6px;
+  background: var(--trilho);
+  overflow: hidden;
+}
+
+.etapa-cabeca__trecho {
+  height: 100%;
+  background: var(--cobalto);
+  transition: width 0.3s ease;
+}
+
+.etapa-cabeca__texto {
+  margin: 0;
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+/* larguras por etapa — são 4 etapas; o JS troca a classe */
+.trecho-1 { width: 25%; }
+.trecho-2 { width: 50%; }
+.trecho-3 { width: 75%; }
+.trecho-4 { width: 100%; }
+
+/* ---------- 8. OPÇÃO MARCÁVEL (o card do questionário) ------------------ */
+
+/* estrutura:
+   label.opcao > input.opcao__caixa + span.opcao__corpo
+   a caixa fica invisível mas continua navegável por teclado */
+
+.opcao {
+  display: block;
+  cursor: pointer;
+}
+
+.opcao__caixa {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.opcao__corpo {
+  /* altura fixa: todas as cartas da tela ficam do mesmo tamanho,
+     independentemente do texto. Sem isso a grade vira escada. */
+  height: 138px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  overflow: hidden;
+  padding: 14px;
+  border-radius: var(--raio-card);
+  background: var(--claro);
+  transition: background var(--tempo) ease;
+}
+
+.opcao__quadrado {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border: var(--borda) solid var(--escuro);
+  border-radius: 8px;
+  background: var(--branco);
+  transition: background var(--tempo) ease, border-color var(--tempo) ease;
+}
+
+.opcao__tique {
+  display: block;
+  width: 15px;
+  height: 15px;
+  transform: scale(0);
+  transition: transform 0.2s ease;
+}
+
+.opcao__texto {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.opcao__dica {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.78125rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--texto-apoio);
+}
+
+/* estado marcado — irmão adjacente, sem JS */
+.opcao__caixa:checked + .opcao__corpo {
+  background: var(--vivo);
+  animation: pulo 0.26s ease;
+}
+
+.opcao__caixa:checked + .opcao__corpo .opcao__quadrado {
+  background: var(--escuro);
+  border-color: var(--escuro);
+}
+
+.opcao__caixa:checked + .opcao__corpo .opcao__tique {
+  transform: scale(1);
+}
+
+/* foco do teclado aparece no corpo do card */
+.opcao__caixa:focus-visible + .opcao__corpo {
+  outline: 3px solid var(--cobalto);
+  outline-offset: 2px;
+}
+
+@keyframes pulo {
+  0% { transform: scale(1); }
+  45% { transform: scale(1.045); }
+  100% { transform: scale(1); }
+}
+
+/* caixa marcável simples, sem cor de card — usada no nome social */
+.opcao-simples {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.opcao-simples input {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--cobalto);
+  cursor: pointer;
+}
+
+.opcao-simples__texto {
+  font-size: 0.90625rem;
+  font-weight: 700;
+}
+
+/* aviso do nome social: aparece quando a caixa é marcada.
+   O gradiente vai do azul claro ao rosa claro da própria paleta. */
+.aviso-social {
+  margin-top: 12px;
+  padding: 16px 18px;
+  border-radius: var(--raio-bloco);
+  background: linear-gradient(100deg,
+    var(--p5-claro) 0%, var(--branco) 50%, var(--p3-claro) 100%);
+}
+
+.aviso-social__titulo {
+  margin: 0 0 6px;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.aviso-social__texto {
+  margin: 0;
+  font-size: 0.84375rem;
+  line-height: 1.5;
+}
+
+/* campos que só aparecem depois de outra resposta */
+.campo--revelado {
+  margin-left: 0;
+  padding-left: 14px;
+  border-left: 3px solid var(--trilho);
+}
+
+/* ---------- 9. AS 8 PALETAS --------------------------------------------- */
+/* As oito paletas existem uma vez só, aqui, e são usadas por dois caminhos
+   diferentes que NÃO se misturam:
+
+   .cor-1 a .cor-8  -> cor do card no questionário, dada pela POSIÇÃO dele
+                       na tela. Não diz nada sobre a área. A sequência gira
+                       a cada tela para a tela não ficar sempre igual.
+
+   .area-<nome>     -> cor da ÁREA de verdade, usada depois do questionário:
+                       pílula de competência, selo de curso, faixa de
+                       resultado. Aí a cor significa alguma coisa.
+
+   O currículo (.folha) não usa nenhuma das duas: ele é neutro. */
+
+:root {
+  --p1-claro: #E4FFA3; --p1-vivo: #C6F432; --p1-escuro: #4F6B00;
+  --p2-claro: #FFF3B0; --p2-vivo: #FFD84D; --p2-escuro: #7A5C00;
+  --p3-claro: #FFD6E8; --p3-vivo: #FF9EC4; --p3-escuro: #A32C5E;
+  --p4-claro: #D6F5E3; --p4-vivo: #6EE7B0; --p4-escuro: #0B6B47;
+  --p5-claro: #D6F0FF; --p5-vivo: #7DD3FC; --p5-escuro: #0A5F87;
+  --p6-claro: #FFE0CC; --p6-vivo: #FFB184; --p6-escuro: #8A3D13;
+  --p7-claro: #CFF5F3; --p7-vivo: #5EEAD4; --p7-escuro: #0A6B5E;
+  --p8-claro: #F2E8D5; --p8-vivo: #E8C77A; --p8-escuro: #6B4E0A;
+}
+
+/* cor por posição na tela — o JS aplica cor-1 a cor-6 nos seis lugares e
+   gira a sequência a cada tela nova */
+.cor-1 { --claro: var(--p1-claro); --vivo: var(--p1-vivo); --escuro: var(--p1-escuro); }
+.cor-2 { --claro: var(--p2-claro); --vivo: var(--p2-vivo); --escuro: var(--p2-escuro); }
+.cor-3 { --claro: var(--p3-claro); --vivo: var(--p3-vivo); --escuro: var(--p3-escuro); }
+.cor-4 { --claro: var(--p4-claro); --vivo: var(--p4-vivo); --escuro: var(--p4-escuro); }
+.cor-5 { --claro: var(--p5-claro); --vivo: var(--p5-vivo); --escuro: var(--p5-escuro); }
+.cor-6 { --claro: var(--p6-claro); --vivo: var(--p6-vivo); --escuro: var(--p6-escuro); }
+.cor-7 { --claro: var(--p7-claro); --vivo: var(--p7-vivo); --escuro: var(--p7-escuro); }
+.cor-8 { --claro: var(--p8-claro); --vivo: var(--p8-vivo); --escuro: var(--p8-escuro); }
+
+/* cor da área — só depois do questionário */
+.area-comercio      { --claro: var(--p3-claro); --vivo: var(--p3-vivo); --escuro: var(--p3-escuro); }
+.area-cuidado       { --claro: var(--p2-claro); --vivo: var(--p2-vivo); --escuro: var(--p2-escuro); }
+.area-cozinha       { --claro: var(--p4-claro); --vivo: var(--p4-vivo); --escuro: var(--p4-escuro); }
+.area-limpeza       { --claro: var(--p6-claro); --vivo: var(--p6-vivo); --escuro: var(--p6-escuro); }
+.area-tecnologia    { --claro: var(--p1-claro); --vivo: var(--p1-vivo); --escuro: var(--p1-escuro); }
+.area-administrativo{ --claro: var(--p5-claro); --vivo: var(--p5-vivo); --escuro: var(--p5-escuro); }
+
+/* ---------- 10. GRADES -------------------------------------------------- */
+
+.grade {
+  display: grid;
+  gap: 10px;
+  /* a grade também é usada em <ul>, então tira marcador e recuo */
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.grade--dois { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+/* no celular três e quatro colunas viram uma só */
+.grade--tres,
+.grade--quatro { grid-template-columns: 1fr; }
+
+.grupo-area {
+  margin-bottom: var(--respiro-grande);
+}
+
+.grupo-area__titulo {
+  margin: 0 0 10px;
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--texto-fraco);
+}
+
+/* ---------- 11. FORMULÁRIO ---------------------------------------------- */
+
+.campo {
+  display: block;
+  margin-bottom: 16px;
+}
+
+.campo__rotulo {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 0.84375rem;
+  font-weight: 700;
+}
+
+.campo__entrada {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  height: 52px;
+  padding: 0 14px;
+  border: var(--borda) solid var(--borda-campo);
+  border-radius: var(--raio-campo);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--tinta);
+  background: var(--branco);
+}
+
+.campo__entrada::placeholder {
+  color: var(--texto-marcador);
+}
+
+textarea.campo__entrada {
+  height: auto;
+  min-height: 120px;
+  padding: 12px 14px;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.campo__ajuda {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.78125rem;
+  line-height: 1.4;
+  color: var(--texto-apoio);
+}
+
+/* mensagem de erro — o JS só troca o texto e tira a classe de escondido */
+.campo__erro {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.78125rem;
+  font-weight: 700;
+  color: var(--erro);
+}
+
+.campo--invalido .campo__entrada {
+  border-color: var(--erro);
+}
+
+.recado {
+  margin: 0 0 16px;
+  padding: 14px 16px;
+  border-radius: var(--raio-card);
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+.recado--erro {
+  background: var(--coral-aviso);
+  color: var(--coral-aviso-texto);
+  font-weight: 700;
+}
+
+.recado--certo {
+  background: var(--suave);
+  border-left: 4px solid var(--cobalto);
+  font-weight: 700;
+}
+
+/* ---------- 12. AVISO --------------------------------------------------- */
+
+.aviso {
+  padding: 14px 16px;
+  border-radius: var(--raio-card);
+  background: var(--coral-aviso);
+}
+
+.aviso__titulo {
+  margin: 0 0 5px;
+  font-size: 0.8125rem;
+  font-weight: 800;
+  color: var(--coral-aviso-texto);
+}
+
+.aviso__texto {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+}
+
+/* ---------- 13. PÍLULAS ------------------------------------------------- */
+
+.lista-pilulas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 14px;
+  padding: 0;
+  list-style: none;
+}
+
+.pilula {
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: var(--raio-redondo);
+  background: var(--claro, var(--suave));
+  font-size: 0.78125rem;
+  font-weight: 700;
+}
+
+.pilula--contorno {
+  background: var(--branco);
+  border: var(--borda) solid var(--linha);
+}
+
+.pilula--tinta {
+  background: var(--tinta);
+  color: var(--branco);
+}
+
+/* ---------- 14. FOLHA DO CURRÍCULO -------------------------------------- */
+
+.folha {
+  padding: 22px;
+  border: var(--borda) solid var(--linha);
+  border-radius: 22px;
+  background: var(--branco);
+}
+
+/* prévia: a mesma folha, menor, para caber ao lado dos botões */
+.folha--previa {
+  padding: 18px;
+}
+
+.folha--previa .folha__nome { font-size: 1.0625rem; }
+.folha--previa .folha__contato,
+.folha--previa .folha__texto,
+.folha--previa .folha__lista { font-size: 0.78125rem; }
+.folha--previa .folha__secao { margin-top: 12px; }
+
+/* lacuna: o que ainda falta a pessoa preencher */
+.folha__lacuna {
+  display: inline-block;
+  min-width: 110px;
+  padding: 1px 8px;
+  border-radius: 4px;
+  background: var(--trilho);
+  color: var(--texto-apoio);
+  font-size: 0.75rem;
+}
+
+.folha__nome {
+  margin: 0;
+  font-size: 1.3125rem;
+  font-weight: 800;
+  letter-spacing: -0.4px;
+}
+
+.folha__contato {
+  margin: 5px 0 0;
+  font-size: 0.84375rem;
+  line-height: 1.45;
+  color: var(--texto-apoio);
+}
+
+.folha__secao {
+  margin-top: 16px;
+}
+
+.folha__rotulo {
+  margin: 0 0 5px;
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--texto-fraco);
+}
+
+.folha__texto {
+  margin: 0;
+  font-size: 0.84375rem;
+  line-height: 1.55;
+}
+
+/* dentro da folha nada herda cor de área: currículo é documento sério */
+.folha .pilula {
+  background: var(--branco);
+  border: var(--borda) solid var(--linha);
+}
+
+.folha__lista {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.84375rem;
+  line-height: 1.55;
+}
+
+/* ---------- 15. BLOCOS DE CONTEÚDO -------------------------------------- */
+
+.bloco {
+  padding: 18px 20px;
+  border-radius: var(--raio-bloco);
+  background: var(--suave);
+}
+
+.bloco--contorno {
+  background: var(--branco);
+  border: var(--borda) solid var(--linha);
+}
+
+/* passo numerado da seção "como funciona" */
+.passo {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.passo__numero {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--raio-redondo);
+  background: var(--coral-claro);
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+/* dado com fonte citada */
+.dado__numero {
+  margin: 0;
+  font-size: 2.125rem;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -1.2px;
+  color: var(--coral-escuro);
+}
+
+.dado__texto {
+  margin: 6px 0 0;
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+.dado__fonte {
+  margin: 8px 0 0;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--texto-apoio);
+}
+
+.dado__fonte a {
+  color: var(--texto-apoio);
+}
+
+/* cartão de curso */
+.curso {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 15px;
+  border-radius: 15px;
+  background: var(--branco);
+  color: var(--tinta);
+  text-decoration: none;
+}
+
+.curso__selo {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--claro, var(--coral-claro));
+  border: var(--borda) solid var(--vivo, var(--coral));
+}
+
+.curso__nome {
+  font-size: 0.90625rem;
+  font-weight: 700;
+}
+
+.curso__detalhe {
+  font-size: 0.78125rem;
+  color: var(--texto-apoio);
+}
+
+/* ---------- 15b. TABELA E CÓDIGO ---------------------------------------- */
+
+.tabela {
+  width: 100%;
+  margin: 0 0 var(--respiro);
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.tabela th {
+  padding: 0 10px 8px 0;
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--texto-fraco);
+}
+
+.tabela td {
+  padding: 9px 10px 9px 0;
+  border-top: 1px solid var(--trilho);
+  font-size: 0.84375rem;
+  line-height: 1.45;
+  vertical-align: top;
+}
+
+code {
+  padding: 2px 6px;
+  border-radius: 5px;
+  background: var(--suave);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.86em;
+}
+
+.bloco code,
+.aviso code {
+  background: var(--branco);
+}
+
+/* ---------- 15c. PINTURA PELA ÁREA -------------------------------------- */
+/* fica depois de .bloco e .passo__numero de propósito: estas duas classes
+   precisam vencer o fundo padrão de quem elas estão pintando */
+
+.tom-claro { background: var(--claro); }
+.tom-vivo  { background: var(--vivo); }
+
+/* separa duas telas que, no estático, aparecem uma embaixo da outra.
+   Some junto com o aviso quando o JS passar a mostrar uma por vez. */
+.proxima-tela {
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: var(--borda) dashed var(--borda-campo);
+}
+
+/* ---------- 16. PÁGINAS AINDA VAZIAS ------------------------------------ */
+/* some junto com o conteúdo de verdade; é só marcação de obra */
+
+.em-obra {
+  padding: 22px;
+  border: var(--borda) dashed var(--borda-campo);
+  border-radius: var(--raio-bloco);
+  background: var(--suave);
+}
+
+.em-obra__titulo {
+  margin: 0 0 8px;
+  font-size: 0.875rem;
+  font-weight: 800;
+}
+
+.em-obra__texto {
+  margin: 0;
+  font-size: 0.84375rem;
+  line-height: 1.5;
+  color: var(--texto-apoio);
+}
+
+.em-obra__lista {
+  margin: 10px 0 0;
+  padding-left: 20px;
+  font-size: 0.84375rem;
+  line-height: 1.6;
+  color: var(--texto-apoio);
+}
+
+/* ---------- 17. RESPONSIVO ---------------------------------------------- */
+
+@media (min-width: 600px) {
+  .grade--tres { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grade--quatro { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 900px) {
+  :root {
+    --margem-lateral: 40px;
+    --respiro: 24px;
+    --respiro-grande: 32px;
+  }
+
+  body { font-size: 1.03125rem; }
+
+  .titulo-um {
+    font-size: 3rem;
+    letter-spacing: -2px;
+  }
+
+  .titulo-dois {
+    font-size: 1.625rem;
+    letter-spacing: -0.9px;
+  }
+
+  .faixa { padding: 44px 0; }
+
+  .grade { gap: 12px; }
+  .grade--tres { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .grade--quatro { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+  .navegacao-etapa .botao { flex: 0 0 auto; }
+
+  /* duas colunas lado a lado onde faz sentido */
+  .duas-colunas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 36px;
+    align-items: flex-start;
+  }
+
+  .duas-colunas > * {
+    flex: 1 1 360px;
+    min-width: 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  .titulo-um {
+    font-size: 3.625rem;
+    letter-spacing: -2.4px;
+  }
+}
+
+/* ---------- 18. ACESSIBILIDADE ------------------------------------------ */
+
+/* Esconde de TODO MUNDO, inclusive do leitor de tela. É o que vale para
+   campo que ainda não deve existir: com .esconder o campo some da tela mas
+   continua sendo lido em voz alta, o que confunde mais do que ajuda. */
+.oculto {
+  display: none;
+}
+
+/* texto só para leitor de tela — fica invisível mas CONTINUA sendo lido.
+   Use só para legenda e rótulo que o visual já deixa óbvio. */
+.esconder {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* foco sempre visível, em qualquer elemento */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--cobalto);
+  outline-offset: 2px;
+}
+
+/* quem pediu menos animação no sistema não recebe nenhuma */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+
+/* ---------- 19. AJUSTE DE FONTE E ALTO CONTRASTE ------------------------ */
+/* Todo font-size do arquivo está em rem, então mudar a base do <html> muda
+   a página inteira. Também faz a página respeitar o tamanho de fonte que a
+   pessoa já configurou no navegador. */
+
+html { font-size: 100%; }
+html.fonte-media  { font-size: 112.5%; }
+html.fonte-grande { font-size: 125%; }
+
+/* Barra de acessibilidade no topo de todas as páginas, antes de qualquer
+   conteúdo: é o primeiro elemento que o teclado alcança. Segue o padrão
+   do e-MAG, com atalho 1 para o conteúdo, 2 para o menu e 6 para o
+   alto contraste. */
+.barra-acesso {
+  background: var(--suave);
+  border-bottom: var(--borda) solid var(--linha);
+}
+
+.barra-acesso__linha {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.barra-acesso__atalhos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.barra-acesso__link {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--tinta);
+  text-decoration: none;
+}
+
+.barra-acesso__link:hover {
+  text-decoration: underline;
+}
+
+.barra-acesso__tecla {
+  display: inline-block;
+  min-width: 18px;
+  margin-left: 4px;
+  padding: 1px 5px;
+  border: 1px solid var(--borda-campo);
+  border-radius: 4px;
+  font-size: 0.6875rem;
+  text-align: center;
+}
+
+.controles-acesso {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.controles-acesso__botao {
+  min-width: 40px;
+  height: 40px;
+  padding: 0 10px;
+  border: var(--borda) solid var(--linha);
+  border-radius: var(--raio-redondo);
+  background: var(--branco);
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--tinta);
+  cursor: pointer;
+}
+
+.controles-acesso__botao:hover {
+  border-color: var(--tinta);
+}
+
+.controles-acesso__botao[aria-pressed="true"] {
+  background: var(--tinta);
+  border-color: var(--tinta);
+  color: var(--branco);
+}
+
+/* alto contraste: tira os pastéis e deixa tudo em preto, branco e um azul
+   escuro. Nenhuma informação dependia só de cor, então nada se perde. */
+html.alto-contraste {
+  --cobalto: #00257F;
+  --coral: #FFFFFF;
+  --coral-claro: #FFFFFF;
+  --coral-escuro: #000000;
+  --coral-aviso: #FFFFFF;
+  --coral-aviso-texto: #000000;
+  --tinta: #000000;
+  --texto-apoio: #000000;
+  --texto-fraco: #000000;
+  --texto-marcador: #3A3A3A;
+  --branco: #FFFFFF;
+  --suave: #FFFFFF;
+  --linha: #000000;
+  --borda-campo: #000000;
+  --trilho: #DADADA;
+  --erro: #8C0000;
+  --lilas-claro: #FFFFFF;
+  --lilas-escuro: #000000;
+}
+
+html.alto-contraste .opcao__corpo,
+html.alto-contraste .pilula,
+html.alto-contraste .curso__selo,
+html.alto-contraste .passo__numero,
+html.alto-contraste .aviso-social {
+  background: var(--branco);
+  border: var(--borda) solid var(--tinta);
+}
+
+html.alto-contraste .opcao__caixa:checked + .opcao__corpo {
+  background: var(--branco);
+  border-width: 4px;
+}
+
+html.alto-contraste .marca-texto {
+  background: none;
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+}
+
+html.alto-contraste .botao--principal {
+  border-color: var(--tinta);
+}
+
+/* ---------- 20. CARD DE ENDEREÇO (lilás) -------------------------------- */
+/* Lilás porque é a cor associada às causas de população em situação de rua.
+   Texto preto sobre o fundo dá 15,7:1; o título dá 7,7:1. */
+
+:root {
+  --lilas-claro: #EDE7FD;
+  --lilas-escuro: #53309A;
+}
+
+.aviso-lilas {
+  margin-top: 8px;
+  padding: 14px 16px;
+  border-radius: var(--raio-card);
+  background: var(--lilas-claro);
+}
+
+.aviso-lilas__titulo {
+  margin: 0 0 5px;
+  font-size: 0.8125rem;
+  font-weight: 800;
+  color: var(--lilas-escuro);
+}
+
+.aviso-lilas__texto {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+}
+
+/* ---------- 21. BOTÃO DISCRETO ------------------------------------------ */
+/* Para ações secundárias que não podem competir com baixar o currículo. */
+
+.botao--mini {
+  padding: 10px 16px;
+  border-color: var(--linha);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.botao--mini:hover {
+  border-color: var(--tinta);
+  background: var(--branco);
+  color: var(--tinta);
+  transform: none;
+}
+
+.acoes-discretas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-top: var(--respiro-grande);
+  padding-top: var(--respiro);
+  border-top: var(--borda) solid var(--trilho);
+}
+
+.acoes-discretas .botao {
+  flex: 0 0 auto;
+}
+
+/* o exemplo do telefone de recado pode ficar longo; nunca empurra a página */
+#exemplo-recado {
+  overflow-wrap: anywhere;
+}
+
+/* ---------- 22. RECADO DE TELA VAZIA ------------------------------------ */
+/* Aparece quando a pessoa não marca nada. Não pode parecer erro: a pergunta
+   é que não encaixou. Fundo da própria paleta, com a mãozinha apontando. */
+
+.recado-vazio {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-radius: var(--raio-card);
+  background: var(--p1-claro);
+}
+
+.recado-vazio__seta {
+  flex: none;
+  font-size: 1.25rem;
+  line-height: 1.2;
+}
+
+.recado-vazio__texto {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+html.alto-contraste .recado-vazio {
+  background: var(--branco);
+  border: var(--borda) solid var(--tinta);
+}
+
+/* ---------- 23. AJUSTES FINOS ------------------------------------------- */
+
+/* a carta encolhe no computador, onde há mais largura por coluna */
+@media (min-width: 900px) {
+  .opcao__corpo { height: 108px; }
+}
+
+/* a dupla de frequência é de uma linha só: não precisa da altura da carta */
+#tela-frequencia .opcao__corpo,
+#lista-destinos .opcao__corpo {
+  height: auto;
+  min-height: 64px;
+  align-items: center;
+}
+
+/* o chamado principal da marca, centralizado e com respiro no celular */
+.chamada-marca {
+  margin: var(--respiro-grande) 0 0;
+  text-align: center;
+}
+
+.chamada-marca .botao {
+  width: 100%;
+}
+
+@media (min-width: 900px) {
+  .chamada-marca {
+    text-align: left;
+  }
+  .chamada-marca .botao {
+    width: auto;
+    min-width: 220px;
+  }
+}
+
+/* no celular os downloads não encostam no currículo */
+.pilha > .botoes-dupla:first-child {
+  margin-top: 8px;
+}
+
+@media (max-width: 899px) {
+  .duas-colunas > .pilha > .botoes-dupla:first-child {
+    margin-top: var(--respiro-grande);
+  }
+}
+
+/* "Faltou alguma coisa?" ocupa a linha inteira para não quebrar a dupla */
+.acoes-discretas__rotulo {
+  flex: 1 0 100%;
+  margin: 0 0 4px;
+}
+
+/* ---------- 24. CORREÇÕES DE LAYOUT ------------------------------------- */
+
+/* No celular as duas colunas viram uma pilha, e sem isso os blocos colavam
+   um no outro — era o que grudava o botão Começar no card da Ana. */
+@media (max-width: 899px) {
+  .duas-colunas > * + * {
+    margin-top: var(--respiro-grande);
+  }
+}
+
+/* O segundo chamado para a ação só faz sentido no celular, onde o primeiro
+   já saiu da tela. No computador os dois ficam visíveis juntos. */
+.so-no-celular {
+  display: block;
+}
+
+@media (min-width: 900px) {
+  .so-no-celular {
+    display: none;
+  }
+}
+
+/* ---------- 25. BLOCO DE ACESSIBILIDADE (PCD) --------------------------- */
+/* As cores são as da Disability Pride Flag de 2021, da Ann Magill. As cinco
+   faixas representam tipos de deficiência: vermelho física, dourado
+   neurodivergência, branco invisível e não diagnosticada, azul psiquiátrica,
+   verde sensorial. O fundo carvão é luto pelas vítimas de violência
+   capacitista.
+
+   A própria bandeira foi redesenhada em 2021 para ser acessível: as faixas
+   em zigue-zague causavam efeito de cintilação, e as cores foram suavizadas
+   para quem tem daltonismo. Por isso aqui ela entra como uma FAIXA FINA no
+   topo do bloco, nunca como fundo atrás do texto: fundo listrado quebraria
+   o contraste e trairia a razão de existir do próprio redesenho. */
+
+:root {
+  --bandeira-vermelho: #CF7280;
+  --bandeira-dourado:  #EEDE77;
+  --bandeira-branco:   #E8E8E8;
+  --bandeira-azul:     #7BC2E0;
+  --bandeira-verde:    #3BB07D;
+  --bandeira-carvao:   #595959;
+}
+
+.aviso-acesso {
+  margin-top: 12px;
+  border-radius: var(--raio-bloco);
+  overflow: hidden;
+  background: var(--suave);
+  border: var(--borda) solid var(--linha);
+}
+
+.aviso-acesso__bandeira {
+  height: 10px;
+  background: linear-gradient(
+    100deg,
+    var(--bandeira-vermelho) 0%,   var(--bandeira-vermelho) 20%,
+    var(--bandeira-dourado)  20%,  var(--bandeira-dourado)  40%,
+    var(--bandeira-branco)   40%,  var(--bandeira-branco)   60%,
+    var(--bandeira-azul)     60%,  var(--bandeira-azul)     80%,
+    var(--bandeira-verde)    80%,  var(--bandeira-verde)    100%
+  );
+}
+
+.aviso-acesso__corpo {
+  padding: 16px 18px;
+}
+
+.aviso-acesso__titulo {
+  margin: 0 0 6px;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.aviso-acesso__texto {
+  margin: 0 0 10px;
+  font-size: 0.84375rem;
+  line-height: 1.5;
+}
+
+html.alto-contraste .aviso-acesso {
+  background: var(--branco);
+  border-color: var(--tinta);
+}
+
+html.alto-contraste .aviso-acesso__bandeira {
+  background: var(--tinta);
+}
+
+/* Uma caixa marcável que não pode passar batida fica dentro de um bloco
+   com traço, em vez de solta entre dois campos. */
+.opcao-destaque {
+  margin-bottom: 16px;
+  padding: 14px 16px;
+  border: var(--borda) solid var(--borda-campo);
+  border-radius: var(--raio-card);
+}
+
+.opcao-destaque .opcao-simples {
+  margin-bottom: 0;
+}
+
+.opcao-destaque__dica {
+  margin: 6px 0 0 28px;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: var(--texto-apoio);
+}
+
+/* ---------- 26. PAR DE CAMPOS LADO A LADO ------------------------------- */
+/* Usado no período de estudo: ano de início e ano de fim. */
+
+.campo-par {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.campo-par > .campo {
+  flex: 1 1 130px;
+  min-width: 0;
+}

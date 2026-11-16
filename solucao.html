@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Você já tem experiência. O rezumaz pergunta sobre o seu dia a dia e devolve um currículo pronto.">
+  <title>Solução · rezumaz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800&display=swap">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <div class="barra-acesso">
+    <div class="conteudo barra-acesso__linha">
+      <nav class="barra-acesso__atalhos" aria-label="Atalhos de acessibilidade">
+        <a class="barra-acesso__link" href="#conteudo" accesskey="1">
+          Ir para o conteúdo <span class="barra-acesso__tecla" aria-hidden="true">1</span>
+        </a>
+        <a class="barra-acesso__link" href="#menu" accesskey="2">
+          Ir para o menu <span class="barra-acesso__tecla" aria-hidden="true">2</span>
+        </a>
+      </nav>
+
+      <div class="controles-acesso">
+        <button class="controles-acesso__botao" type="button" id="fonte-menor"
+                aria-label="Diminuir o tamanho da letra">A&minus;</button>
+        <button class="controles-acesso__botao" type="button" id="fonte-maior"
+                aria-label="Aumentar o tamanho da letra">A+</button>
+        <button class="controles-acesso__botao" type="button" id="alto-contraste"
+                accesskey="6" aria-pressed="false">
+          Alto contraste <span class="barra-acesso__tecla" aria-hidden="true">6</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <header class="cabecalho">
+    <div class="conteudo cabecalho__linha">
+      <a class="marca" href="index.html">rezumaz</a>
+      <nav class="menu" id="menu" aria-label="Menu principal">
+        <ul class="menu__lista">
+          <li><a class="menu__link" href="index.html">Início</a></li>
+          <li><a class="menu__link menu__link--ativo" href="solucao.html" aria-current="page">Solução</a></li>
+          <li><a class="menu__link" href="impacto.html">Impacto</a></li>
+          <li><a class="menu__link" href="equipe.html">Equipe</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+
+    <!-- ===== A PLATAFORMA ===== -->
+    <section class="faixa" aria-labelledby="titulo-chamada">
+      <div class="conteudo">
+        <ul class="lista-pilulas">
+          <li><span class="pilula pilula--contorno">de graça</span></li>
+          <li><span class="pilula pilula--contorno">sem cadastro</span></li>
+          <li><span class="pilula pilula--contorno">3 minutos</span></li>
+        </ul>
+
+        <div class="duas-colunas">
+          <div class="pilha">
+            <h1 class="titulo-um" id="titulo-chamada">
+              Você já tem <span class="marca-texto">experiência.</span> Só falta escrever.
+            </h1>
+            <p class="paragrafo">
+              A gente pergunta sobre o seu dia a dia e devolve um currículo pronto,
+              na área que você quiser.
+            </p>
+            <p class="chamada-marca">
+              <a class="botao botao--principal" href="simulacao.html">Começar</a>
+            </p>
+          </div>
+
+          <!-- o fato, o que ela escreveria, o que a gente escreve -->
+          <div class="pilha pilha--curta">
+            <div class="bloco bloco--contorno">
+              <p class="rotulo">O que a Ana fez</p>
+              <p class="folha__texto">
+                Cuidou do irmão mais novo todo dia depois da aula, durante dois anos.
+                Dava comida, levava pra escola, ajudava na lição.
+              </p>
+            </div>
+            <div class="bloco bloco--contorno">
+              <p class="rotulo">O que a Ana escreveria</p>
+              <p class="folha__texto">Experiência: nenhuma</p>
+            </div>
+            <div class="bloco area-cuidado tom-claro">
+              <p class="rotulo">O que a gente escreve</p>
+              <p class="folha__texto">
+                Cuidado de criança, com rotina de alimentação e higiene<br>
+                Apoio em atividade escolar
+              </p>
+              <ul class="lista-pilulas">
+                <li><span class="pilula pilula--tinta">Cuidado infantil</span></li>
+                <li><span class="pilula pilula--tinta">Apoio escolar</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== COMO FUNCIONA ===== -->
+    <section class="faixa faixa--linha" aria-labelledby="titulo-funciona">
+      <div class="conteudo">
+        <p class="rotulo">Como funciona</p>
+        <h2 class="titulo-dois" id="titulo-funciona">
+          Quatro etapas, e nenhuma pergunta sobre emprego anterior
+        </h2>
+
+        <div class="grade grade--quatro">
+          <div class="passo">
+            <span class="passo__numero cor-1 tom-vivo" aria-hidden="true">1</span>
+            <div>
+              <h3 class="titulo-tres">Como a gente te chama</h3>
+              <p class="apoio">Um nome pra conversar. O do currículo vem depois.</p>
+            </div>
+          </div>
+          <div class="passo">
+            <span class="passo__numero cor-3 tom-vivo" aria-hidden="true">2</span>
+            <div>
+              <h3 class="titulo-tres">O questionário</h3>
+              <p class="apoio">Cartas sobre coisas do dia a dia. Marca o que já fez.</p>
+            </div>
+          </div>
+          <div class="passo">
+            <span class="passo__numero cor-2 tom-vivo" aria-hidden="true">3</span>
+            <div>
+              <h3 class="titulo-tres">Seus dados</h3>
+              <p class="apoio">O currículo já aparece montado, faltando só o contato.</p>
+            </div>
+          </div>
+          <div class="passo">
+            <span class="passo__numero cor-5 tom-vivo" aria-hidden="true">4</span>
+            <div>
+              <h3 class="titulo-tres">Baixar</h3>
+              <p class="apoio">Pronto pra imprimir ou pra mandar em site de vaga.</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="chamada-marca so-no-celular">
+          <a class="botao botao--principal" href="simulacao.html">Montar meu currículo</a>
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="rodape">
+    <div class="conteudo rodape__linha">
+      <p>rezumaz · Global Solution 2026-2 · FIAP</p>
+      <p>Projeto acadêmico · nenhum dado sai do aparelho</p>
+    </div>
+  </footer>
+
+  <script src="js/visual.js"></script>
+</body>
+</html>

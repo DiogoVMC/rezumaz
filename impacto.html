@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Impacto do rezumaz e ligação com os Objetivos de Desenvolvimento Sustentável.">
+  <title>Impacto · rezumaz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800&display=swap">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <div class="barra-acesso">
+    <div class="conteudo barra-acesso__linha">
+      <nav class="barra-acesso__atalhos" aria-label="Atalhos de acessibilidade">
+        <a class="barra-acesso__link" href="#conteudo" accesskey="1">
+          Ir para o conteúdo <span class="barra-acesso__tecla" aria-hidden="true">1</span>
+        </a>
+        <a class="barra-acesso__link" href="#menu" accesskey="2">
+          Ir para o menu <span class="barra-acesso__tecla" aria-hidden="true">2</span>
+        </a>
+      </nav>
+
+      <div class="controles-acesso">
+        <button class="controles-acesso__botao" type="button" id="fonte-menor"
+                aria-label="Diminuir o tamanho da letra">A&minus;</button>
+        <button class="controles-acesso__botao" type="button" id="fonte-maior"
+                aria-label="Aumentar o tamanho da letra">A+</button>
+        <button class="controles-acesso__botao" type="button" id="alto-contraste"
+                accesskey="6" aria-pressed="false">
+          Alto contraste <span class="barra-acesso__tecla" aria-hidden="true">6</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <header class="cabecalho">
+    <div class="conteudo cabecalho__linha">
+      <a class="marca" href="index.html">rezumaz</a>
+      <nav class="menu" id="menu" aria-label="Menu principal">
+        <ul class="menu__lista">
+          <li><a class="menu__link" href="index.html">Início</a></li>
+          <li><a class="menu__link" href="solucao.html">Solução</a></li>
+          <li><a class="menu__link menu__link--ativo" href="impacto.html" aria-current="page">Impacto</a></li>
+          <li><a class="menu__link" href="equipe.html">Equipe</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+
+
+    <!-- ===== ODS ===== -->
+    <section class="faixa faixa--suave" aria-labelledby="titulo-ods">
+      <div class="conteudo">
+        <h2 class="titulo-dois" id="titulo-ods">Ligação com os ODS</h2>
+
+        <div class="grade grade--dois">
+          <div class="bloco bloco--contorno">
+            <h3 class="titulo-tres">ODS 4 · Educação de qualidade</h3>
+            <p class="apoio">Meta 4.4 e como o projeto age sobre ela.</p>
+          </div>
+          <div class="bloco bloco--contorno">
+            <h3 class="titulo-tres">ODS 10 · Redução das desigualdades</h3>
+            <p class="apoio">Meta 10.2 e como o projeto age sobre ela.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PRÓXIMOS PASSOS ===== -->
+    <section class="faixa faixa--linha" aria-labelledby="titulo-futuro">
+      <div class="conteudo">
+        <h2 class="titulo-dois" id="titulo-futuro">O que fica para depois</h2>
+        <div class="em-obra">
+          <p class="em-obra__titulo">Conteúdo a escrever</p>
+          <p class="em-obra__texto">Evoluções que já decidimos deixar fora desta entrega:</p>
+          <ul class="em-obra__lista">
+            <li>Conta de usuário para salvar e voltar depois (precisa de servidor)</li>
+            <li>Medir quantas pessoas conseguiram entrevista</li>
+            <li>Parceria com cursos gratuitos de verdade</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="rodape">
+    <div class="conteudo rodape__linha">
+      <p>rezumaz · Global Solution 2026-2 · FIAP</p>
+      <p>Projeto acadêmico · nenhum dado sai do aparelho</p>
+    </div>
+  </footer>
+
+  <script src="js/visual.js"></script>
+</body>
+</html>

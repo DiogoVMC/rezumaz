@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Responda sobre o seu dia a dia e receba um currículo pronto.">
+  <title>Montar meu currículo · rezumaz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800&display=swap">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+
+  <div class="barra-acesso">
+    <div class="conteudo barra-acesso__linha">
+      <nav class="barra-acesso__atalhos" aria-label="Atalhos de acessibilidade">
+        <a class="barra-acesso__link" href="#conteudo" accesskey="1">
+          Ir para o conteúdo <span class="barra-acesso__tecla" aria-hidden="true">1</span>
+        </a>
+        <a class="barra-acesso__link" href="#menu" accesskey="2">
+          Ir para o menu <span class="barra-acesso__tecla" aria-hidden="true">2</span>
+        </a>
+      </nav>
+
+      <div class="controles-acesso">
+        <button class="controles-acesso__botao" type="button" id="fonte-menor"
+                aria-label="Diminuir o tamanho da letra">A-</button>
+        <button class="controles-acesso__botao" type="button" id="fonte-maior"
+                aria-label="Aumentar o tamanho da letra">A+</button>
+        <button class="controles-acesso__botao" type="button" id="alto-contraste"
+                accesskey="6" aria-pressed="false">
+          Alto contraste <span class="barra-acesso__tecla" aria-hidden="true">6</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <header class="cabecalho">
+    <div class="conteudo cabecalho__linha">
+      <a class="marca" href="index.html">rezumaz</a>
+      <nav class="menu" id="menu" aria-label="Menu principal">
+        <ul class="menu__lista">
+          <li><a class="menu__link" href="index.html">Início</a></li>
+          <li><a class="menu__link menu__link--ativo" href="solucao.html" aria-current="page">Solução</a></li>
+          <li><a class="menu__link" href="impacto.html">Impacto</a></li>
+          <li><a class="menu__link" href="equipe.html">Equipe</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+
+    <!-- ===================================================================
+         AVISO 
+         as 4 etapas estão todas visíveis porque ainda não existe a mecânica
+         de trocar de etapa. Cada uma é uma <section> com id próprio:
+         #etapa-1 a #etapa-4.
+         Na etapa 2 está UMA tela de exemplo. No produto, o JS gera 5 telas
+         a partir de js/dados.js, aplicando cor-1 a cor-6 pela POSIÇÃO da
+         carta — a cor não vem da área. -->
+
+    <!-- ============ ETAPA 1 · PRIMEIRAS INFORMAÇÕES ============ -->
+    <section class="faixa faixa--linha" id="etapa-1" aria-labelledby="titulo-etapa-1">
+      <div class="conteudo conteudo--estreito">
+
+        <div class="etapa-cabeca">
+          <div class="etapa-cabeca__trilho">
+            <div class="etapa-cabeca__trecho trecho-1"></div>
+          </div>
+          <p class="etapa-cabeca__texto">Etapa <span class="marca-texto">1 de 4</span></p>
+        </div>
+
+        <h1 class="titulo-um" id="titulo-etapa-1">Como a gente te chama?</h1>
+
+        <form class="formulario" id="formulario-inicio" novalidate>
+          <div class="campo">
+            <label class="campo__rotulo" for="tratamento">Seu nome</label>
+            <input class="campo__entrada" type="text" id="tratamento" name="tratamento"
+                   placeholder="Ana" autocomplete="given-name" required
+                   aria-describedby="ajuda-tratamento erro-tratamento">
+            <span class="campo__ajuda" id="ajuda-tratamento">
+              É só pra conversar com você aqui. O nome do currículo você escolhe no fim.
+            </span>
+            <span class="campo__erro oculto" id="erro-tratamento" role="alert"></span>
+          </div>
+
+          <div class="campo">
+            <label class="campo__rotulo" for="idade">Sua idade</label>
+            <input class="campo__entrada" type="number" id="idade" name="idade"
+                   placeholder="18" min="14" max="99" required
+                   aria-describedby="ajuda-idade erro-idade">
+            <span class="campo__ajuda" id="ajuda-idade">
+              Serve para sugerir vaga de aprendiz ou efetiva.
+            </span>
+            <span class="campo__erro oculto" id="erro-idade" role="alert"></span>
+          </div>
+        </form>
+
+        <div class="aviso">
+          <p class="aviso__titulo">Fica tranquilo</p>
+          <p class="aviso__texto">
+            Nada do que você escrever sai do seu aparelho. Não tem cadastro e não tem senha.
+          </p>
+        </div>
+
+        <div class="navegacao-etapa">
+          <a class="botao botao--contorno" href="solucao.html">Voltar</a>
+          <a class="botao botao--principal" href="#etapa-2">Continuar</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ETAPA 2 · QUESTIONÁRIO ============ -->
+    <section class="faixa faixa--linha" id="etapa-2" aria-labelledby="titulo-etapa-2">
+      <div class="conteudo conteudo--estreito">
+
+        <div class="etapa-cabeca">
+          <div class="etapa-cabeca__trilho">
+            <div class="etapa-cabeca__trecho trecho-2"></div>
+          </div>
+          <p class="etapa-cabeca__texto">Etapa <span class="marca-texto">2 de 4</span></p>
+        </div>
+
+        <h2 class="titulo-um" id="titulo-etapa-2">O que você já fez?</h2>
+        <p class="paragrafo">
+          Marque tudo que você já fez, mesmo sem ter ganhado nada por isso.
+        </p>
+
+        <!-- aqui é só exemplo, precisa alterar os cards com os js, a cor das cartas já troca pelo visual.js-->
+        <fieldset class="grade grade--dois" id="tela-atividades">
+          <legend class="esconder">Coisas que você já fez</legend>
+
+          <label class="opcao cor-1">
+            <input class="opcao__caixa" type="checkbox" name="atividade" value="com-atender">
+            <span class="opcao__corpo">
+              <span class="opcao__quadrado">
+                <svg class="opcao__tique" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF"
+                     stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"
+                     aria-hidden="true" focusable="false"><path d="M4 12.5l5.2 5.2L20 7"></path></svg>
+              </span>
+              <span class="opcao__texto">
+                Atendi quem chegava
+                <span class="opcao__dica">Perguntei o que a pessoa precisava e levei até o produto</span>
+              </span>
+            </span>
+          </label>
+
+          <label class="opcao cor-2">
+            <input class="opcao__caixa" type="checkbox" name="atividade" value="cui-crianca">
+            <span class="opcao__corpo">
+              <span class="opcao__quadrado">
+                <svg class="opcao__tique" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF"
+                     stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"
+                     aria-hidden="true" focusable="false"><path d="M4 12.5l5.2 5.2L20 7"></path></svg>
+              </span>
+              <span class="opcao__texto">
+                Cuidei de criança
+                <span class="opcao__dica">Irmão, sobrinho, filho de vizinho</span>
+              </span>
+            </span>
+          </label>
+
+          <label class="opcao cor-3">
+            <input class="opcao__caixa" type="checkbox" name="atividade" value="coz-familia">
+            <span class="opcao__corpo">
+              <span class="opcao__quadrado">
+                <svg class="opcao__tique" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF"
+                     stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"
+                     aria-hidden="true" focusable="false"><path d="M4 12.5l5.2 5.2L20 7"></path></svg>
+              </span>
+              <span class="opcao__texto">
+                Cozinhei pra casa toda
+                <span class="opcao__dica">Almoço de todo dia pra várias pessoas</span>
+              </span>
+            </span>
+          </label>
+
+          <label class="opcao cor-4">
+            <input class="opcao__caixa" type="checkbox" name="atividade" value="lim-faxina">
+            <span class="opcao__corpo">
+              <span class="opcao__quadrado">
+                <svg class="opcao__tique" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF"
+                     stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"
+                     aria-hidden="true" focusable="false"><path d="M4 12.5l5.2 5.2L20 7"></path></svg>
+              </span>
+              <span class="opcao__texto">
+                Fiz a faxina de um lugar inteiro
+                <span class="opcao__dica">Casa, salão, igreja, loja</span>
+              </span>
+            </span>
+          </label>
+
+          <label class="opcao cor-5">
+            <input class="opcao__caixa" type="checkbox" name="atividade" value="tec-ensinar">
+            <span class="opcao__corpo">
+              <span class="opcao__quadrado">
+                <svg class="opcao__tique" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF"
+                     stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"
+                     aria-hidden="true" focusable="false"><path d="M4 12.5l5.2 5.2L20 7"></path></svg>
+              </span>
+              <span class="opcao__texto">
+                Ensinei alguém a usar celular
+                <span class="opcao__dica">Pix, WhatsApp, app do banco, foto</span>
+              </span>
+            </span>
+          </label>
+
+          <label class="opcao cor-6">
+            <input class="opcao__caixa" type="checkbox" name="atividade" value="adm-anotar">
+            <span class="opcao__corpo">
+              <span class="opcao__quadrado">
+                <svg class="opcao__tique" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF"
+                     stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"
+                     aria-hidden="true" focusable="false"><path d="M4 12.5l5.2 5.2L20 7"></path></svg>
+              </span>
+              <span class="opcao__texto">
+                Anotei entrada e saída de dinheiro
+                <span class="opcao__dica">Caderno, bloco de notas, planilha</span>
+              </span>
+            </span>
+          </label>
+
+        </fieldset>
+             
+        <div class="navegacao-etapa">
+          <a class="botao botao--contorno" href="#etapa-1">Voltar</a>
+          <a class="botao botao--principal" href="#tela-frequencia" id="botao-avancar">Ver mais atividades</a>
+        </div>
+        <div class="recado-vazio oculto" id="ajuda-vazio">
+          <p class="recado-vazio__texto">
+            Nenhuma dessas? Tem muita coisa aqui ainda. A gente nem sempre acerta
+            de primeira o que você já fez pode seguir,que ainda existem outras atividades
+          </p>
+        </div>
+
+        <div class="proxima-tela" id="tela-frequencia">
+          <h3 class="titulo-dois">Com que frequência você fazia isso?</h3>
+
+          <ul class="lista-pilulas" id="marcadas-grupo-1">
+            <li><span class="pilula pilula--contorno">Atendi quem chegava</span></li>
+            <li><span class="pilula pilula--contorno">Fiquei no caixa</span></li>
+            <li><span class="pilula pilula--contorno">Repus prateleira</span></li>
+          </ul>
+
+          <fieldset class="pilha pilha--curta">
+            <legend class="esconder">Frequência dessas atividades</legend>
+
+            <label class="opcao cor-5">
+              <input class="opcao__caixa" type="radio" name="frequencia-1" value="freq-diaria">
+              <span class="opcao__corpo">
+                <span class="opcao__quadrado">
+                  <svg class="opcao__tique" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF"
+                       stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"
+                       aria-hidden="true" focusable="false"><path d="M4 12.5l5.2 5.2L20 7"></path></svg>
+                </span>
+                <span class="opcao__texto">
+                  Todo dia, por meses
+                  <span class="opcao__dica">Era parte da minha rotina</span>
+                </span>
+              </span>
+            </label>
+
+            <label class="opcao cor-5">
+              <input class="opcao__caixa" type="radio" name="frequencia-1" value="freq-semanal">
+              <span class="opcao__corpo">
+                <span class="opcao__quadrado">
+                  <svg class="opcao__tique" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF"
+                       stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"
+                       aria-hidden="true" focusable="false"><path d="M4 12.5l5.2 5.2L20 7"></path></svg>
+                </span>
+                <span class="opcao__texto">
+                  Toda semana
+                  <span class="opcao__dica">Fim de semana, feriado, dia de movimento</span>
+                </span>
+              </span>
+            </label>
+
+            <label class="opcao cor-5">
+              <input class="opcao__caixa" type="radio" name="frequencia-1" value="freq-eventual">
+              <span class="opcao__corpo">
+                <span class="opcao__quadrado">
+                  <svg class="opcao__tique" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF"
+                       stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"
+                       aria-hidden="true" focusable="false"><path d="M4 12.5l5.2 5.2L20 7"></path></svg>
+                </span>
+                <span class="opcao__texto">
+                  De vez em quando
+                  <span class="opcao__dica">Quando precisavam de mim</span>
+                </span>
+              </span>
+            </label>
+
+            <label class="opcao cor-5">
+              <input class="opcao__caixa" type="radio" name="frequencia-1" value="freq-poucas">
+              <span class="opcao__corpo">
+                <span class="opcao__quadrado">
+                  <svg class="opcao__tique" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF"
+                       stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"
+                       aria-hidden="true" focusable="false"><path d="M4 12.5l5.2 5.2L20 7"></path></svg>
+                </span>
+                <span class="opcao__texto">
+                  Poucas vezes
+                  <span class="opcao__dica">Já fiz, mas não era comum</span>
+                </span>
+              </span>
+            </label>
+          </fieldset>
+
+          <!-- aqui o Continuar é legítimo: sai da etapa 2 para a etapa 3 -->
+          <div class="navegacao-etapa">
+            <a class="botao botao--contorno" href="#tela-atividades">Voltar</a>
+            <a class="botao botao--principal" href="#etapa-3">Continuar</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ETAPA 3 · O CURRÍCULO E OS DADOS QUE FALTAM ============ -->
+    <section class="faixa faixa--linha" id="etapa-3" aria-labelledby="titulo-etapa-3">
+      <div class="conteudo conteudo--estreito">
+
+        <div class="etapa-cabeca">
+          <div class="etapa-cabeca__trilho">
+            <div class="etapa-cabeca__trecho trecho-3"></div>
+          </div>
+          <p class="etapa-cabeca__texto">Etapa <span class="marca-texto">3 de 4</span></p>
+        </div>
+
+        <p class="rotulo">O que a gente encontrou</p>
+        <h2 class="titulo-um" id="titulo-etapa-3">
+          <span id="total-competencias">7</span> competências que você já tem
+        </h2>
+
+        <ul class="lista-pilulas" id="lista-competencias">
+          <li><span class="pilula area-comercio tom-claro">Atendimento ao público</span></li>
+          <li><span class="pilula area-comercio tom-claro">Operação de caixa</span></li>
+          <li><span class="pilula area-administrativo tom-claro">Controle de entradas e saídas</span></li>
+          <li><span class="pilula area-cuidado tom-claro">Cuidado infantil</span></li>
+          <li><span class="pilula area-tecnologia tom-claro">Suporte a usuário</span></li>
+        </ul>
+
+        <!-- RETORNA CURRICULO MONTADO MAS SEM OS DADOS SENSIVEIS-->
+        <p class="paragrafo">Suas habilidades já estão escritas. Falta só algumas coisas sobre você:</p>
+
+        <div class="folha folha--previa" id="folha-previa">
+          <p class="folha__nome"><span class="folha__lacuna">seu nome</span></p>
+          <p class="folha__contato">
+            <span class="folha__lacuna">telefone</span>
+            <span class="folha__lacuna">e-mail</span>
+          </p>
+          <p class="folha__contato"><span class="folha__lacuna">cidade e estado</span></p>
+
+          <div class="folha__secao">
+            <p class="folha__rotulo">Habilidades e competências</p>
+            <ul class="folha__lista">
+              <li><strong>Atendimento ao público</strong> &mdash; atendi clientes e orientei sobre os produtos</li>
+              <li><strong>Operação de caixa</strong> &mdash; recebi pagamentos e fechei o caixa</li>
+              <li><strong>Controle financeiro</strong> &mdash; registrei entradas e saídas em caderno ou planilha</li>
+              <li><strong>Cuidado infantil</strong> &mdash; cuidei de criança, com rotina de alimentação e higiene</li>
+              <li><strong>Suporte a usuário</strong> &mdash; orientei pessoas no uso de aplicativos e aparelhos</li>
+            </ul>
+          </div>
+
+          <div class="folha__secao">
+            <p class="folha__rotulo">Formação</p>
+            <p class="folha__texto"><span class="folha__lacuna">sua escolaridade</span></p>
+          </div>
+        </div>
+
+        <p>
+          <a class="botao botao--principal botao--largo" href="#tela-dados">Adicionar meus dados</a>
+        </p>
+
+        <!-- ===== Tela de dados ===== -->
+        <div class="proxima-tela" id="tela-dados">
+          <h3 class="titulo-dois">Agora, sobre você</h3>
+          <p class="paragrafo">
+            Contato, formação e o tipo de vaga que você quer tentar.
+          </p>
+
+          <p class="recado recado--erro oculto" id="recado-erro" role="alert"></p>
+          <p class="recado recado--certo oculto" id="recado-certo" role="status"></p>
+
+          <form class="formulario" id="formulario-dados" novalidate>
+
+            <div class="campo">
+              <label class="campo__rotulo" for="nome-curriculo">Nome que vai no currículo</label>
+              <input class="campo__entrada" type="text" id="nome-curriculo" name="nome-curriculo"
+                     placeholder="Ana Souza" autocomplete="name" required
+                     aria-describedby="ajuda-nome erro-nome">
+              <span class="campo__ajuda" id="ajuda-nome">
+                Nome sobrenome ou nome social.
+              </span>
+              <span class="campo__erro oculto" id="erro-nome" role="alert"></span>
+            </div>
+
+            <!-- caixa de erro aparece se tirar a classe .esconder de #aviso-social. -->
+            <label class="opcao-simples" for="nome-social">
+              <input type="checkbox" id="nome-social" name="nome-social"
+                     aria-controls="aviso-social">
+              <span class="opcao-simples__texto">Identificar como nome social</span>
+            </label>
+
+            <div class="aviso-social" id="aviso-social" role="status">
+              <p class="aviso-social__titulo">Essa é uma escolha sua.</p>
+              <p class="aviso-social__texto">
+                Marcar deixa isso claro desde o começo, o que ajuda se você quiser
+                saber logo como o lugar reage. Não marcar é igualmente direito seu, e
+                ninguém é obrigado a declarar. Dá pra baixar com e sem.
+              </p>
+            </div>
+
+            <div class="campo">
+              <label class="campo__rotulo" for="telefone">Telefone com DDD</label>
+              <input class="campo__entrada" type="tel" id="telefone" name="telefone"
+                     placeholder="(18) 99999-9999" autocomplete="tel" required
+                     aria-describedby="ajuda-telefone erro-telefone">
+              <span class="campo__ajuda" id="ajuda-telefone">DDD de 2 dígitos</span>
+              <span class="campo__erro oculto" id="erro-telefone" role="alert"></span>
+            </div>
+
+            <label class="opcao-simples" for="telefone-recado">
+              <input type="checkbox" id="telefone-recado" name="telefone-recado"
+                     aria-controls="bloco-recado">
+              <span class="opcao-simples__texto">Esse telefone é de recado</span>
+            </label>
+
+            <div id="bloco-recado">
+              <div class="campo campo--revelado">
+                <label class="campo__rotulo" for="recado-tipo">De quem é o telefone</label>
+                <select class="campo__entrada" id="recado-tipo" name="recado-tipo"
+                        aria-describedby="ajuda-recado-tipo">
+                  <option value="pessoa">De uma pessoa</option>
+                  <option value="instituicao">De uma instituição</option>
+                </select>
+                <span class="campo__ajuda" id="ajuda-recado-tipo">
+                  Familiar, vizinho, amigo - ou Centro POP, abrigo, posto, igreja.
+                </span>
+              </div>
+
+              <div class="campo campo--revelado" id="campo-recado-local">
+                <label class="campo__rotulo" for="recado-local">Nome da instituição</label>
+                <input class="campo__entrada" type="text" id="recado-local" name="recado-local"
+                       placeholder="Centro POP" aria-describedby="ajuda-recado-local">
+                <span class="campo__ajuda" id="ajuda-recado-local">
+                  Centro POP, abrigo, posto, igreja, associação.
+                </span>
+              </div>
+
+              <div class="campo campo--revelado">
+                <label class="campo__rotulo" for="recado-nome">Quem atende</label>
+                <input class="campo__entrada" type="text" id="recado-nome" name="recado-nome"
+                       placeholder="Maria" aria-describedby="ajuda-recado-nome">
+                <span class="campo__ajuda" id="ajuda-recado-nome">
+                  Numa instituição, o setor ou a pessoa de referência. Pode ficar em branco.
+                </span>
+              </div>
+
+              <p class="apoio" id="exemplo-recado">
+                No currículo vai sair assim:
+                <strong>(18) 99999-9999 (Recado com Maria - procurar por Ana)</strong>
+              </p>
+            </div>
+
+            <div class="campo" id="campo-email">
+              <label class="campo__rotulo" for="email">E-mail</label>
+              <input class="campo__entrada" type="email" id="email" name="email"
+                     placeholder="ana.souza@email.com" autocomplete="email" required
+                     aria-describedby="ajuda-email erro-email">
+              <span class="campo__ajuda" id="ajuda-email">Vale a pena criar um é grátis e na hora.</span>
+              <span class="campo__erro oculto" id="erro-email" role="alert"></span>
+            </div>
+
+
+            <label class="opcao-simples" for="sem-email">
+              <input type="checkbox" id="sem-email" name="sem-email"
+                     aria-controls="campo-email">
+              <span class="opcao-simples__texto">Não tenho e-mail</span>
+            </label>
+
+            <div class="campo">
+              <label class="campo__rotulo" for="cidade">Cidade</label>
+              <input class="campo__entrada" type="text" id="cidade" name="cidade"
+                     placeholder="Araçatuba" autocomplete="address-level2" required
+                     aria-describedby="ajuda-cidade erro-cidade">
+              <span class="campo__ajuda" id="ajuda-cidade">Existe filtros por cidades, vale a pena informar.</span>
+              <span class="campo__erro oculto" id="erro-cidade" role="alert"></span>
+
+              <div class="aviso-lilas">
+                <p class="aviso-lilas__titulo">Não tem endereço fixo?</p>
+                <p class="aviso-lilas__texto">
+                  Use o endereço de um equipamento público de referência, como o
+                  Centro POP mais próximo, ou só a cidade e o bairro onde você
+                  circula. Endereço não é exigência pra se candidatar.
+                </p>
+              </div>
+            </div>
+
+            <div class="campo">
+              <label class="campo__rotulo" for="estado">Estado</label>
+              <select class="campo__entrada" id="estado" name="estado" required
+                      aria-describedby="erro-estado">
+                <option value="">Escolha o estado</option>
+                <option value="AC">Acre</option>
+                <option value="AL">Alagoas</option>
+                <option value="AP">Amapá</option>
+                <option value="AM">Amazonas</option>
+                <option value="BA">Bahia</option>
+                <option value="CE">Ceará</option>
+                <option value="DF">Distrito Federal</option>
+                <option value="ES">Espírito Santo</option>
+                <option value="GO">Goiás</option>
+                <option value="MA">Maranhão</option>
+                <option value="MT">Mato Grosso</option>
+                <option value="MS">Mato Grosso do Sul</option>
+                <option value="MG">Minas Gerais</option>
+                <option value="PA">Pará</option>
+                <option value="PB">Paraíba</option>
+                <option value="PR">Paraná</option>
+                <option value="PE">Pernambuco</option>
+                <option value="PI">Piauí</option>
+                <option value="RJ">Rio de Janeiro</option>
+                <option value="RN">Rio Grande do Norte</option>
+                <option value="RS">Rio Grande do Sul</option>
+                <option value="RO">Rondônia</option>
+                <option value="RR">Roraima</option>
+                <option value="SC">Santa Catarina</option>
+                <option value="SP">São Paulo</option>
+                <option value="SE">Sergipe</option>
+                <option value="TO">Tocantins</option>
+              </select>
+              <span class="campo__erro oculto" id="erro-estado" role="alert"></span>
+            </div>
+
+            <div class="campo">
+              <label class="campo__rotulo" for="escolaridade">Escolaridade</label>
+              <select class="campo__entrada" id="escolaridade" name="escolaridade" required
+                      aria-controls="bloco-formacao" aria-describedby="erro-escolaridade">
+                <option value="">Escolha uma opção</option>
+                <option value="fundamental">Ensino fundamental</option>
+                <option value="medio">Ensino médio</option>
+                <option value="tecnico">Curso técnico</option>
+                <option value="superior">Ensino superior</option>
+              </select>
+              <span class="campo__erro oculto" id="erro-escolaridade" role="alert"></span>
+            </div>
+
+            <!-- Estes dois só aparecem depois que a escolaridade é escolhida.
+                 O JS tira a classe .esconder de #bloco-formacao. -->
+            <div id="bloco-formacao">
+              <div class="campo campo--revelado">
+                <label class="campo__rotulo" for="instituicao">Onde você estudou</label>
+                <input class="campo__entrada" type="text" id="instituicao" name="instituicao"
+                       placeholder="EE Manoel Bento da Cruz"
+                       aria-describedby="ajuda-instituicao">
+                <span class="campo__ajuda" id="ajuda-instituicao">Nome da escola ou da instituição.</span>
+              </div>
+
+              <div class="campo campo--revelado">
+                <span class="campo__rotulo" id="rotulo-periodo">Período</span>
+                <div class="campo-par" role="group" aria-labelledby="rotulo-periodo">
+                  <div class="campo">
+                    <label class="campo__rotulo" for="ano-inicio">Comecei em</label>
+                    <select class="campo__entrada" id="ano-inicio" name="ano-inicio"></select>
+                  </div>
+                  <div class="campo">
+                    <label class="campo__rotulo" for="ano-fim">Terminei em</label>
+                    <select class="campo__entrada" id="ano-fim" name="ano-fim"></select>
+                  </div>
+                </div>
+
+                <label class="opcao-simples" for="ainda-cursando">
+                  <input type="checkbox" id="ainda-cursando" name="ainda-cursando"
+                         aria-controls="ano-fim">
+                  <span class="opcao-simples__texto">Ainda estou cursando</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="campo">
+              <label class="campo__rotulo" for="destino">Quer direcionar pra alguma área? (opcional)</label>
+              <select class="campo__entrada" id="destino" name="destino" aria-describedby="ajuda-destino">
+                <option value="">Não, pode deixar geral</option>
+                <option value="vendas">Vendas e comércio</option>
+                <option value="saude">Saúde e cuidado</option>
+                <option value="atendimento">Atendimento</option>
+                <option value="alimentacao">Alimentação</option>
+                <option value="servicos">Serviços gerais</option>
+                <option value="administrativo">Administrativo</option>
+              </select>
+              <span class="campo__ajuda" id="ajuda-destino">
+                Escolhendo, o que combina mais com a vaga aparece primeiro. Nada é apagado.
+              </span>
+            </div>
+
+            <div class="aviso oculto" id="aviso-aderencia" role="status">
+              <p class="aviso__titulo">Essa área combina pouco com o que você marcou</p>
+              <p class="aviso__texto">
+                Você pode se candidatar do mesmo jeito, e o currículo sai normal. Só
+                que com o que a gente tem até aqui, dá pra mostrar pouca coisa dessa
+                área. Um curso gratuito de poucas horas já muda isso. Veja algumas opções:
+              </p>
+              <!-- adicionar card de cursos disponiveis-->
+            </div>
+
+            <div class="opcao-destaque">
+              <label class="opcao-simples" for="vaga-pcd">
+                <input type="checkbox" id="vaga-pcd" name="vaga-pcd"
+                       aria-controls="aviso-pcd">
+                <span class="opcao-simples__texto">Quero identificação de pessoa com deficiência</span>
+              </label>
+              <p class="opcao-destaque__dica">
+                Marque só se quiser. Serve para as vagas reservadas pela cota.
+              </p>
+            </div>
+
+            <div class="aviso-acesso" id="aviso-pcd" role="status">
+              <!-- as cinco faixas da Disability Pride Flag -->
+              <div class="aviso-acesso__bandeira" aria-hidden="true"></div>
+              <div class="aviso-acesso__corpo">
+              <p class="aviso-acesso__titulo">Só é necessário para vaga exclusiva.</p>
+              <p class="aviso-acesso__texto">
+                Você concorre a qualquer vaga comum sem precisar dessa identificação,
+                mesmo que ela esteja no currículo. Ela só é exigida nas vagas
+                reservadas pela cota.
+              </p>
+
+              <div class="campo-par">
+                <div class="campo">
+                  <label class="campo__rotulo" for="pcd-categoria">Categoria</label>
+                  <select class="campo__entrada" id="pcd-categoria" name="pcd-categoria">
+                    <option value="">Escolha uma</option>
+                    <option value="fisica">Física</option>
+                    <option value="auditiva">Auditiva</option>
+                    <option value="visual">Visual</option>
+                    <option value="intelectual">Intelectual</option>
+                    <option value="multipla">Múltipla</option>
+                    <option value="tea">Transtorno do Espectro Autista (TEA)</option>
+                    <option value="psicossocial">Mental ou psicossocial</option>
+                    <option value="reabilitado">Reabilitado pelo INSS</option>
+                  </select>
+                </div>
+
+                <div class="campo">
+                  <label class="campo__rotulo" for="pcd-cid">CID (opcional)</label>
+                  <input class="campo__entrada" type="text" id="pcd-cid" name="pcd-cid"
+                         placeholder="H90.3" aria-describedby="ajuda-pcd-cid">
+                  <span class="campo__ajuda" id="ajuda-pcd-cid">
+                    Sai ao lado da categoria no currículo.
+                  </span>
+                </div>
+              </div>
+
+              <div class="campo">
+                <label class="campo__rotulo" for="pcd-adaptacao">
+                  Precisa de algum recurso de acessibilidade na entrevista?
+                </label>
+                <input class="campo__entrada" type="text" id="pcd-adaptacao" name="pcd-adaptacao"
+                       placeholder="Intérprete de Libras" aria-describedby="ajuda-pcd-adaptacao">
+                <span class="campo__ajuda" id="ajuda-pcd-adaptacao">
+                  Opcional. Intérprete de Libras, local sem escada, material ampliado,
+                  tempo a mais, lugar silencioso. Pedir adaptação razoável é um
+                  direito, e avisar antes evita constrangimento no dia.
+                </span>
+              </div>
+              </div>
+            </div>
+
+            <div class="navegacao-etapa">
+              <a class="botao botao--contorno" href="#etapa-2">Voltar</a>
+              <button class="botao botao--principal" type="submit">Gerar meu currículo</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ETAPA 4 · CURRÍCULO PRONTO ============ -->
+    <section class="faixa faixa--linha" id="etapa-4" aria-labelledby="titulo-etapa-4">
+      <div class="conteudo">
+
+        <div class="etapa-cabeca">
+          <div class="etapa-cabeca__trilho">
+            <div class="etapa-cabeca__trecho trecho-4"></div>
+          </div>
+          <p class="etapa-cabeca__texto">Etapa <span class="marca-texto">4 de 4</span></p>
+        </div>
+
+        <h2 class="titulo-um" id="titulo-etapa-4">
+          Teu currículo tá <span class="marca-texto">pronto.</span>
+        </h2>
+
+        <div class="duas-colunas">
+
+          <div class="folha folha--previa" id="folha-final">
+                <!-- TÁ SÓ CHUMBADO PRECISA CRIAR RENDERIZAR O CORRETO -->
+
+            <p class="folha__nome">ANA SOUZA</p>
+            <p class="folha__contato">(18) 99999-9999 · ana.souza@email.com</p>
+            <p class="folha__contato">Araçatuba, SP</p>
+            <!-- A identificação de PCD, quando a pessoa escolhe ter, fecha o
+                 cabeçalho. Nunca no meio das habilidades. -->
+            <p class="folha__contato" id="folha-pcd">Pessoa com deficiência · auditiva · CID H90.3</p>
+            <p class="folha__contato" id="folha-adaptacao">Recurso para entrevista: intérprete de Libras</p>
+
+            <div class="folha__secao">
+              <p class="folha__rotulo">Habilidades e competências</p>
+              <ul class="folha__lista">
+                <li><strong>Atendimento ao público</strong> -; atendi clientes e orientei sobre os produtos</li>
+                <li><strong>Operação de caixa</strong> - recebi pagamentos e fechei o caixa</li>
+                <li><strong>Controle financeiro</strong> - registrei entradas e saídas em caderno ou planilha</li>
+                <li><strong>Cuidado infantil</strong> - cuidei de criança, com rotina de alimentação e higiene</li>
+                <li><strong>Apoio escolar</strong> - apoiei criança em atividade escolar</li>
+                <li><strong>Suporte a usuário</strong> - orientei pessoas no uso de aplicativos e aparelhos</li>
+              </ul>
+            </div>
+
+            <!-- "Atividades" só existe se a pessoa marcou algo de responsabilidade -->
+            <div class="folha__secao">
+              <p class="folha__rotulo">Atividades</p>
+              <ul class="folha__lista">
+                <li>Organizei evento, dividindo tarefas</li>
+                <li>Treinei outra pessoa na atividade</li>
+              </ul>
+            </div>
+
+            <div class="folha__secao">
+              <p class="folha__rotulo">Formação</p>
+              <p class="folha__texto">Ensino médio · EE Manoel Bento da Cruz · 2022 a 2024</p>
+            </div>
+          </div>
+
+          <div class="pilha">
+
+            <div class="botoes-dupla">
+              <button class="botao botao--principal" type="button" id="baixar-curriculo">
+                Baixar currículo
+              </button>
+              <button class="botao botao--contorno" type="button" id="baixar-para-ia">
+                Baixar para IA
+              </button>
+            </div>
+
+            <p class="apoio">
+              A versão normal é a que você imprime e entrega na mão. A versão para
+              IA é texto simples, do jeito que os sistemas de triagem dos sites de
+              vaga conseguem ler.
+            </p>
+
+            <!-- Aparece só quando a idade informada está entre 14 e 24.
+                 Não é declaração: é informação calculada da etapa 1. -->
+            <div class="aviso" id="aviso-aprendiz">
+              <p class="aviso__titulo">Você também cabe em vaga de Jovem Aprendiz</p>
+              <p class="aviso__texto">
+                Pela sua idade, sim. A Lei 10.097/2000 obriga empresa de médio e
+                grande porte a ter de 5% a 15% do quadro em aprendizes de 14 a 24
+                anos
+              </p>
+            </div>
+
+       
+            <div class="bloco bloco--contorno" id="bloco-cursos">
+              <h3 class="titulo-tres">Deixar ainda mais forte</h3>
+              <p class="apoio">
+                Cursos de graça, com certificado. Cada um vira mais uma linha aqui
+                dentro.
+              </p>
+              <div class="grade grade--dois" id="lista-cursos">
+                <a class="curso area-comercio" href="#">
+                  <span class="curso__selo" aria-hidden="true"></span>
+                  <span class="curso__nome">Técnicas de venda</span>
+                  <span class="curso__detalhe">instituição - carga horária</span>
+                </a>
+                <a class="curso area-cuidado" href="#">
+                  <span class="curso__selo" aria-hidden="true"></span>
+                  <span class="curso__nome">Atendimento ao cliente</span>
+                  <span class="curso__detalhe">instituição - carga horária</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Correções por último e discretas: quem chegou aqui quer baixar,
+             não voltar. -->
+        <div class="acoes-discretas">
+          <p class="apoio acoes-discretas__rotulo">Faltou alguma coisa?</p>
+          <a class="botao botao--contorno botao--mini" href="#tela-dados">Corrigir meus dados</a>
+          <a class="botao botao--contorno botao--mini" href="#etapa-2">Mudar respostas</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="rodape">
+    <div class="conteudo rodape__linha">
+      <p>rezumaz · Global Solution 2026-2 · FIAP</p>
+      <p>Projeto acadêmico · nenhum dado sai do aparelho</p>
+    </div>
+  </footer>
+
+  <script src="js/visual.js"></script>
+  <script src="js/dados.js"></script>
+  <script src="js/simulacao.js"></script>
+  <script src="js/formulario.js"></script>
+</body>
+</html>
