@@ -346,15 +346,17 @@
   /* ---------- 11. anos de estudo ---------------------------------------- */
 
   const ANOS_PARA_TRAS = 50;
+  /* a previsão de conclusão precisa de anos no futuro (faculdade dura até 6 anos) */
+  const ANOS_PARA_FRENTE_PREVISAO = 6;
 
-  function encherAnos(select, vazio) {
+  function encherAnos(select, vazio, anosParaFrente) {
     if (!select || select.options.length) return;
     const agora = new Date().getFullYear();
     const primeiro = document.createElement("option");
     primeiro.value = "";
     primeiro.textContent = vazio;
     select.append(primeiro);
-    for (let ano = agora + 1; ano >= agora - ANOS_PARA_TRAS; ano -= 1) {
+    for (let ano = agora + anosParaFrente; ano >= agora - ANOS_PARA_TRAS; ano -= 1) {
       const opcao = document.createElement("option");
       opcao.value = String(ano);
       opcao.textContent = String(ano);
@@ -368,14 +370,15 @@
     const cursando = document.getElementById("ainda-cursando");
     if (!inicio || !fim) return;
 
-    encherAnos(inicio, "Ano");
-    encherAnos(fim, "Ano");
+    encherAnos(inicio, "Ano", 0);
+    encherAnos(fim, "Ano", ANOS_PARA_FRENTE_PREVISAO);
 
     if (!cursando) return;
 
     function aplicar() {
-      fim.disabled = cursando.checked;
-      if (cursando.checked) fim.value = "";
+      /* o select continua clicável: marcado, ele vira a previsão de conclusão.
+         Ao trocar, limpa o ano, porque ele muda de sentido. */
+      fim.value = "";
       const rotulo = document.querySelector('label[for="ano-fim"]');
       if (rotulo) rotulo.textContent = cursando.checked ? "Previsão" : "Terminei em";
     }
