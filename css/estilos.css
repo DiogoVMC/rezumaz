@@ -1683,3 +1683,19 @@ html.alto-contraste .opcao-frequencia {
   clip-path: inset(50%);
   white-space: nowrap;
 }
+
+@media print {
+  .barra-acesso,
+  .cabecalho,
+  .rodape,
+  #etapa-4 .etapa-cabeca,
+  #etapa-4 .titulo-um,
+  #etapa-4 .pilha,
+  #etapa-4 .acoes-discretas {
+    display: none;
+  }
+
+  #etapa-4 .duas-colunas {
+    display: block;
+  }
+}
