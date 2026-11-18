@@ -1,10 +1,6 @@
 /* ==========================================================================
-   rezumaz · dados do questionário
-   Só dados. Nenhuma função, nenhuma mecânica — isso fica nos outros arquivos.
+   Só dados. Nenhuma função, nenhuma mecânica isso fica nos outros arquivos.
 
-   É daqui que sai o requisito "array com 10 ou mais objetos exibido no DOM":
-   o array atividades tem 60 objetos e é ele que o JS percorre para montar
-   as cartas de cada tela.
 
    Campos de cada atividade:
      id          identificador único
@@ -12,31 +8,12 @@
      texto       o que aparece na carta, na língua da pessoa
      dica        exemplo concreto embaixo do texto
      nivel       comum | intermediaria | incomum
-                 a sonda sempre começa pelas comuns; quando a pessoa não
-                 marca nada, o botão vira "Ver mais atividades" e a tela
-                 seguinte desce um nível
-     competencia o NOME da habilidade. Vira pílula na tela e é a palavra-
-                 chave que o anúncio de vaga usa.
+     competencia o NOME da habilidade
      acao        o que a pessoa FEZ, em primeira pessoa e no passado.
-                 Minúscula, sem ponto final, sem dizer onde foi.
-
-   POR QUE NÃO EXISTE MAIS "EXPERIÊNCIA"
-   Atividade de casa não entra como experiência profissional: isso convida o
-   recrutador a descartar. O conselho padrão para primeiro emprego é apagar o
-   bloco de experiência e trocar por habilidades. E habilidade não é só o
-   nome: ela é escrita ligando a habilidade à ação.
-
-   No currículo os dois campos saem juntos, assim:
-     Controle financeiro — registrei entradas e saídas em caderno ou planilha
-   Nunca "em casa", nunca "por hobby". O que vale é o que a pessoa sabe fazer.
-
-   Atenção: a COR da carta não vem da área. O JS aplica cor-1 a cor-6 pela
-   posição na tela e gira a sequência a cada tela. A cor da área só é usada
-   depois do questionário, nas pílulas de competência.
+ 
    ========================================================================== */
 
 /* ---------- as 6 áreas -------------------------------------------------- */
-/* classe: usada só depois do questionário, nunca nas cartas */
 
 const areas = [
   { id: "comercio",       nome: "Comércio e atendimento",   classe: "area-comercio" },
@@ -365,7 +342,7 @@ const atividades = [
 ];
 
 /* ---------- responsabilidade (não pertence a área nenhuma) -------------- */
-/* Aparece na última tela do afunilamento. Não vira bloco próprio: promove o
+/* última tela do afunilamento. não vira bloco próprio: promove o
    título do bloco da área mais forte. */
 
 const responsabilidades = [
@@ -391,10 +368,8 @@ const responsabilidades = [
     titulo: "e coordenação" }
 ];
 
-/* ---------- frequência -------------------------------------------------- */
-/* A pergunta NUNCA nomeia a área. A tela devolve as cartas que a pessoa
-   marcou, com as palavras dela, e pergunta em cima delas:
-   "Com que frequência você fazia isso?" */
+/* ---------- frequência ---------------------------------------- */
+
 
 const frequencias = [
   { id: "freq-diaria",   texto: "Todo dia, por meses", dica: "Era parte da minha rotina",                peso: 4 },
@@ -453,12 +428,18 @@ const titulos = [
 /* Escolher um destino SÓ reordena os blocos. Nenhum texto muda. */
 
 const destinos = [
-  { id: "vendas",         nome: "Vendas e comércio", classe: "area-comercio",       combina: ["comercio", "administrativo"] },
-  { id: "saude",          nome: "Saúde e cuidado",   classe: "area-cuidado",        combina: ["cuidado", "limpeza"] },
-  { id: "atendimento",    nome: "Atendimento",       classe: "area-administrativo", combina: ["comercio", "tecnologia", "administrativo"] },
-  { id: "alimentacao",    nome: "Alimentação",       classe: "area-cozinha",        combina: ["cozinha", "limpeza"] },
-  { id: "servicos",       nome: "Serviços gerais",   classe: "area-limpeza",        combina: ["limpeza", "cuidado"] },
-  { id: "administrativo", nome: "Administrativo",    classe: "area-tecnologia",     combina: ["administrativo", "tecnologia"] }
+  { id: "vendas",         nome: "Vendas e comércio", classe: "area-comercio",       combina: ["comercio", "administrativo"],
+    objetivo: "Primeira oportunidade em vendas e comércio, com atendimento ao cliente e rotina de loja." },
+  { id: "saude",          nome: "Saúde e cuidado",   classe: "area-cuidado",        combina: ["cuidado", "limpeza"],
+    objetivo: "Primeira oportunidade em saúde e cuidado, com apoio a pessoas na rotina do dia a dia." },
+  { id: "atendimento",    nome: "Atendimento",       classe: "area-administrativo", combina: ["comercio", "tecnologia", "administrativo"],
+    objetivo: "Primeira oportunidade em atendimento, presencial ou por telefone e mensagem." },
+  { id: "alimentacao",    nome: "Alimentação",       classe: "area-cozinha",        combina: ["cozinha", "limpeza"],
+    objetivo: "Primeira oportunidade em alimentação, com preparo e serviço de refeições." },
+  { id: "servicos",       nome: "Serviços gerais",   classe: "area-limpeza",        combina: ["limpeza", "cuidado"],
+    objetivo: "Primeira oportunidade em serviços gerais, com limpeza e manutenção de ambientes." },
+  { id: "administrativo", nome: "Administrativo",    classe: "area-tecnologia",     combina: ["administrativo", "tecnologia"],
+    objetivo: "Primeira oportunidade em administrativo, com organização de documentos e controle de entradas e saídas." }
 ];
 
 /* ---------- cursos gratuitos sugeridos ---------------------------------- */

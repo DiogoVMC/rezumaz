@@ -387,6 +387,40 @@
     cursando.addEventListener("change", aplicar);
   }
 
+  /* ---------- 11b. o telefone se formata sozinho ------------------------ */
+  /* (18) 99999-9999 e (18) 9999-9999. Só dígitos entram, e o formato
+     aparece enquanto a pessoa digita, sem precisar ensinar o padrão. */
+
+  function formatarTelefone(bruto) {
+    const numeros = bruto.replace(/\D/g, "").slice(0, 11);
+    if (numeros.length === 0) return "";
+    if (numeros.length <= 2) return "(" + numeros;
+
+    const ddd = numeros.slice(0, 2);
+    const resto = numeros.slice(2);
+
+    /* O hifen so entra com 10 digitos no total. Antes disso nao da pra
+       saber se e fixo (8) ou celular (9, com o 9 na frente), e colocar
+       o hifen cedo joga o numero pro lugar errado enquanto digita. */
+    if (numeros.length < 10) return "(" + ddd + ") " + resto;
+
+    const corte = resto.length > 8 ? 5 : 4;
+    return "(" + ddd + ") " + resto.slice(0, corte) + "-" + resto.slice(corte);
+  }
+
+  function ligarMascaraDeTelefone() {
+    const campo = document.getElementById("telefone");
+    if (!campo) return;
+
+    campo.setAttribute("inputmode", "numeric");
+    campo.setAttribute("maxlength", "15");
+
+    campo.addEventListener("input", function () {
+      campo.value = formatarTelefone(campo.value);
+    });
+  }
+
+
   /* ---------- 12. telefone de recado: pessoa ou instituição ------------- */
 
   function ligarTipoDeRecado() {
@@ -420,6 +454,7 @@
     ligarControlesDeAcesso();
     ligarAderencia();
     ligarAnos();
+    ligarMascaraDeTelefone();
     ligarTipoDeRecado();
   });
 })();

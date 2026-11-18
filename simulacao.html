@@ -125,6 +125,8 @@
           <p class="etapa-cabeca__texto">Etapa <span class="marca-texto">2 de 4</span></p>
         </div>
 
+        <div id="tela-cartas">
+
         <h2 class="titulo-um" id="titulo-etapa-2">O que você já fez?</h2>
         <p class="paragrafo">
           Marque tudo que você já fez, mesmo sem ter ganhado nada por isso.
@@ -231,89 +233,41 @@
           <a class="botao botao--principal" href="#tela-frequencia" id="botao-avancar">Ver mais atividades</a>
         </div>
         <div class="recado-vazio oculto" id="ajuda-vazio">
-          <p class="recado-vazio__texto">
-            Nenhuma dessas? Tem muita coisa aqui ainda. A gente nem sempre acerta
-            de primeira o que você já fez pode seguir,que ainda existem outras atividades
+          <p class="recado-vazio__texto" id="recado-tem-mais">
+            Nenhuma dessas? A gente nem sempre acerta de primeira. Pode seguir,
+            que as próximas telas trazem outras atividades.
+          </p>
+          <p class="recado-vazio__texto oculto" id="recado-sem-entender">
+            Por aqui não deu pra entender muito do que você já fez. Dá pra voltar
+            e olhar de novo com calma, ou seguir e ver cursos que abrem a primeira porta.
           </p>
         </div>
 
+        </div>
+
         <div class="proxima-tela" id="tela-frequencia">
-          <h3 class="titulo-dois">Com que frequência você fazia isso?</h3>
+          <h3 class="titulo-dois" id="titulo-frequencia">Com que frequência você fazia isso?</h3>
 
-          <ul class="lista-pilulas" id="marcadas-grupo-1">
-            <li><span class="pilula pilula--contorno">Atendi quem chegava</span></li>
-            <li><span class="pilula pilula--contorno">Fiquei no caixa</span></li>
-            <li><span class="pilula pilula--contorno">Repus prateleira</span></li>
-          </ul>
+          <p class="paragrafo" id="ajuda-frequencia">
+            Toque nas que você fazia junto e diga a frequência.
+          </p>
 
-          <fieldset class="pilha pilha--curta">
-            <legend class="esconder">Frequência dessas atividades</legend>
+          <p class="paragrafo oculto" id="frequencia-vazia">
+            Você não marcou nenhuma atividade, então não tem frequência pra
+            perguntar. Dá pra voltar e olhar de novo, ou seguir assim mesmo.
+          </p>
 
-            <label class="opcao cor-5">
-              <input class="opcao__caixa" type="radio" name="frequencia-1" value="freq-diaria">
-              <span class="opcao__corpo">
-                <span class="opcao__quadrado">
-                  <svg class="opcao__tique" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF"
-                       stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"
-                       aria-hidden="true" focusable="false"><path d="M4 12.5l5.2 5.2L20 7"></path></svg>
-                </span>
-                <span class="opcao__texto">
-                  Todo dia, por meses
-                  <span class="opcao__dica">Era parte da minha rotina</span>
-                </span>
-              </span>
-            </label>
+          <ul class="lista-pilulas lista-pilulas--clicavel" id="pilulas-frequencia"></ul>
 
-            <label class="opcao cor-5">
-              <input class="opcao__caixa" type="radio" name="frequencia-1" value="freq-semanal">
-              <span class="opcao__corpo">
-                <span class="opcao__quadrado">
-                  <svg class="opcao__tique" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF"
-                       stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"
-                       aria-hidden="true" focusable="false"><path d="M4 12.5l5.2 5.2L20 7"></path></svg>
-                </span>
-                <span class="opcao__texto">
-                  Toda semana
-                  <span class="opcao__dica">Fim de semana, feriado, dia de movimento</span>
-                </span>
-              </span>
-            </label>
+          <div class="pilha pilha--curta" id="opcoes-frequencia" role="group"
+               aria-labelledby="titulo-frequencia"></div>
 
-            <label class="opcao cor-5">
-              <input class="opcao__caixa" type="radio" name="frequencia-1" value="freq-eventual">
-              <span class="opcao__corpo">
-                <span class="opcao__quadrado">
-                  <svg class="opcao__tique" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF"
-                       stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"
-                       aria-hidden="true" focusable="false"><path d="M4 12.5l5.2 5.2L20 7"></path></svg>
-                </span>
-                <span class="opcao__texto">
-                  De vez em quando
-                  <span class="opcao__dica">Quando precisavam de mim</span>
-                </span>
-              </span>
-            </label>
-
-            <label class="opcao cor-5">
-              <input class="opcao__caixa" type="radio" name="frequencia-1" value="freq-poucas">
-              <span class="opcao__corpo">
-                <span class="opcao__quadrado">
-                  <svg class="opcao__tique" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF"
-                       stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"
-                       aria-hidden="true" focusable="false"><path d="M4 12.5l5.2 5.2L20 7"></path></svg>
-                </span>
-                <span class="opcao__texto">
-                  Poucas vezes
-                  <span class="opcao__dica">Já fiz, mas não era comum</span>
-                </span>
-              </span>
-            </label>
-          </fieldset>
+          <p class="campo__erro esconder" id="erro-frequencia" role="alert"></p>
 
           <!-- aqui o Continuar é legítimo: sai da etapa 2 para a etapa 3 -->
           <div class="navegacao-etapa">
             <a class="botao botao--contorno" href="#tela-atividades">Voltar</a>
-            <a class="botao botao--principal" href="#etapa-3">Continuar</a>
+            <a class="botao botao--principal" href="#etapa-3" id="botao-frequencia">Continuar</a>
           </div>
         </div>
       </div>
@@ -329,6 +283,8 @@
           </div>
           <p class="etapa-cabeca__texto">Etapa <span class="marca-texto">3 de 4</span></p>
         </div>
+
+        <div id="tela-previa">
 
         <p class="rotulo">O que a gente encontrou</p>
         <h2 class="titulo-um" id="titulo-etapa-3">
@@ -354,15 +310,19 @@
           </p>
           <p class="folha__contato"><span class="folha__lacuna">cidade e estado</span></p>
 
+          <div class="folha__secao oculto" id="previa-objetivo">
+            <p class="folha__rotulo">Objetivo</p>
+            <p class="folha__texto" id="previa-texto-objetivo"></p>
+          </div>
+
           <div class="folha__secao">
             <p class="folha__rotulo">Habilidades e competências</p>
-            <ul class="folha__lista">
-              <li><strong>Atendimento ao público</strong> &mdash; atendi clientes e orientei sobre os produtos</li>
-              <li><strong>Operação de caixa</strong> &mdash; recebi pagamentos e fechei o caixa</li>
-              <li><strong>Controle financeiro</strong> &mdash; registrei entradas e saídas em caderno ou planilha</li>
-              <li><strong>Cuidado infantil</strong> &mdash; cuidei de criança, com rotina de alimentação e higiene</li>
-              <li><strong>Suporte a usuário</strong> &mdash; orientei pessoas no uso de aplicativos e aparelhos</li>
-            </ul>
+            <ul class="folha__lista" id="previa-habilidades"></ul>
+          </div>
+
+          <div class="folha__secao oculto" id="previa-atividades">
+            <p class="folha__rotulo">Experiência prática</p>
+            <ul class="folha__lista" id="previa-lista-atividades"></ul>
           </div>
 
           <div class="folha__secao">
@@ -374,6 +334,8 @@
         <p>
           <a class="botao botao--principal botao--largo" href="#tela-dados">Adicionar meus dados</a>
         </p>
+
+        </div>
 
         <!-- ===== Tela de dados ===== -->
         <div class="proxima-tela" id="tela-dados">
@@ -445,10 +407,11 @@
               <div class="campo campo--revelado" id="campo-recado-local">
                 <label class="campo__rotulo" for="recado-local">Nome da instituição</label>
                 <input class="campo__entrada" type="text" id="recado-local" name="recado-local"
-                       placeholder="Centro POP" aria-describedby="ajuda-recado-local">
+                       placeholder="Centro POP" aria-describedby="ajuda-recado-local erro-recado-local">
                 <span class="campo__ajuda" id="ajuda-recado-local">
                   Centro POP, abrigo, posto, igreja, associação.
                 </span>
+                <span class="campo__erro oculto" id="erro-recado-local" role="alert"></span>
               </div>
 
               <div class="campo campo--revelado">
@@ -556,8 +519,9 @@
                 <label class="campo__rotulo" for="instituicao">Onde você estudou</label>
                 <input class="campo__entrada" type="text" id="instituicao" name="instituicao"
                        placeholder="EE Manoel Bento da Cruz"
-                       aria-describedby="ajuda-instituicao">
+                       aria-describedby="ajuda-instituicao erro-instituicao">
                 <span class="campo__ajuda" id="ajuda-instituicao">Nome da escola ou da instituição.</span>
+                <span class="campo__erro oculto" id="erro-instituicao" role="alert"></span>
               </div>
 
               <div class="campo campo--revelado">
@@ -565,11 +529,15 @@
                 <div class="campo-par" role="group" aria-labelledby="rotulo-periodo">
                   <div class="campo">
                     <label class="campo__rotulo" for="ano-inicio">Comecei em</label>
-                    <select class="campo__entrada" id="ano-inicio" name="ano-inicio"></select>
+                    <select class="campo__entrada" id="ano-inicio" name="ano-inicio"
+                            aria-describedby="erro-ano-inicio"></select>
+                    <span class="campo__erro oculto" id="erro-ano-inicio" role="alert"></span>
                   </div>
                   <div class="campo">
                     <label class="campo__rotulo" for="ano-fim">Terminei em</label>
-                    <select class="campo__entrada" id="ano-fim" name="ano-fim"></select>
+                    <select class="campo__entrada" id="ano-fim" name="ano-fim"
+                            aria-describedby="erro-ano-fim"></select>
+                    <span class="campo__erro oculto" id="erro-ano-fim" role="alert"></span>
                   </div>
                 </div>
 
@@ -620,7 +588,6 @@
 
             <div class="aviso-acesso" id="aviso-pcd" role="status">
               <!-- as cinco faixas da Disability Pride Flag -->
-              <div class="aviso-acesso__bandeira" aria-hidden="true"></div>
               <div class="aviso-acesso__corpo">
               <p class="aviso-acesso__titulo">Só é necessário para vaga exclusiva.</p>
               <p class="aviso-acesso__texto">
@@ -643,15 +610,17 @@
                     <option value="psicossocial">Mental ou psicossocial</option>
                     <option value="reabilitado">Reabilitado pelo INSS</option>
                   </select>
+                  <span class="campo__erro oculto" id="erro-pcd-categoria" role="alert"></span>
                 </div>
 
                 <div class="campo">
                   <label class="campo__rotulo" for="pcd-cid">CID (opcional)</label>
                   <input class="campo__entrada" type="text" id="pcd-cid" name="pcd-cid"
-                         placeholder="H90.3" aria-describedby="ajuda-pcd-cid">
+                         placeholder="H90.3" aria-describedby="ajuda-pcd-cid erro-pcd-cid">
                   <span class="campo__ajuda" id="ajuda-pcd-cid">
                     Sai ao lado da categoria no currículo.
                   </span>
+                  <span class="campo__erro oculto" id="erro-pcd-cid" role="alert"></span>
                 </div>
               </div>
 
@@ -699,38 +668,36 @@
           <div class="folha folha--previa" id="folha-final">
                 <!-- TÁ SÓ CHUMBADO PRECISA CRIAR RENDERIZAR O CORRETO -->
 
-            <p class="folha__nome">ANA SOUZA</p>
-            <p class="folha__contato">(18) 99999-9999 · ana.souza@email.com</p>
-            <p class="folha__contato">Araçatuba, SP</p>
+            <p class="folha__nome" id="final-nome">ANA SOUZA</p>
+            <!-- Só aparece se a pessoa marcou "Identificar como nome social".
+                 Fica colado no nome, que é o que ele está dizendo. -->
+            <p class="folha__contato oculto" id="folha-nome-social">Nome social</p>
+            <p class="folha__contato" id="final-contato">(18) 99999-9999 · ana.souza@email.com</p>
+            <p class="folha__contato" id="final-cidade">Araçatuba, SP</p>
             <!-- A identificação de PCD, quando a pessoa escolhe ter, fecha o
                  cabeçalho. Nunca no meio das habilidades. -->
             <p class="folha__contato" id="folha-pcd">Pessoa com deficiência · auditiva · CID H90.3</p>
             <p class="folha__contato" id="folha-adaptacao">Recurso para entrevista: intérprete de Libras</p>
 
+            <div class="folha__secao oculto" id="final-objetivo">
+              <p class="folha__rotulo">Objetivo</p>
+              <p class="folha__texto" id="final-texto-objetivo"></p>
+            </div>
+
             <div class="folha__secao">
               <p class="folha__rotulo">Habilidades e competências</p>
-              <ul class="folha__lista">
-                <li><strong>Atendimento ao público</strong> -; atendi clientes e orientei sobre os produtos</li>
-                <li><strong>Operação de caixa</strong> - recebi pagamentos e fechei o caixa</li>
-                <li><strong>Controle financeiro</strong> - registrei entradas e saídas em caderno ou planilha</li>
-                <li><strong>Cuidado infantil</strong> - cuidei de criança, com rotina de alimentação e higiene</li>
-                <li><strong>Apoio escolar</strong> - apoiei criança em atividade escolar</li>
-                <li><strong>Suporte a usuário</strong> - orientei pessoas no uso de aplicativos e aparelhos</li>
-              </ul>
+              <ul class="folha__lista" id="final-habilidades"></ul>
             </div>
 
             <!-- "Atividades" só existe se a pessoa marcou algo de responsabilidade -->
-            <div class="folha__secao">
-              <p class="folha__rotulo">Atividades</p>
-              <ul class="folha__lista">
-                <li>Organizei evento, dividindo tarefas</li>
-                <li>Treinei outra pessoa na atividade</li>
-              </ul>
+            <div class="folha__secao oculto" id="final-atividades">
+              <p class="folha__rotulo">Experiência prática</p>
+              <ul class="folha__lista" id="final-lista-atividades"></ul>
             </div>
 
             <div class="folha__secao">
               <p class="folha__rotulo">Formação</p>
-              <p class="folha__texto">Ensino médio · EE Manoel Bento da Cruz · 2022 a 2024</p>
+              <p class="folha__texto" id="final-formacao">Ensino médio · EE Manoel Bento da Cruz · 2022 a 2024</p>
             </div>
           </div>
 
@@ -794,6 +761,48 @@
         </div>
       </div>
     </section>
+
+    <!-- Aparece quando a pessoa chega na etapa 3 sem nenhuma atividade
+         marcada: nao da pra montar curriculo com nada, entao em vez de
+         entregar uma folha vazia a gente explica e aponta curso. -->
+    <div class="modal oculto" id="modal-sem-habilidades" role="dialog"
+         aria-modal="true" aria-labelledby="modal-titulo">
+      <div class="modal__caixa">
+        <h2 class="titulo-tres" id="modal-titulo">Ainda falta o que colocar na folha</h2>
+
+        <p class="apoio">
+          Você não marcou nenhuma atividade, então o currículo sairia em branco.
+          Isso não quer dizer que você não fez nada: quer dizer que a gente não
+          conseguiu puxar nada por aqui.
+        </p>
+        <p class="apoio">
+          Dá pra voltar e olhar as atividades de novo com calma. E dá pra começar
+          por um curso de graça, de poucas horas, que já vira a primeira linha.
+        </p>
+
+        <div class="grade grade--dois" id="modal-lista-cursos">
+          <a class="curso area-comercio" href="#">
+            <span class="curso__selo" aria-hidden="true"></span>
+            <span class="curso__nome">Técnicas de venda</span>
+            <span class="curso__detalhe">instituição - carga horária</span>
+          </a>
+          <a class="curso area-cuidado" href="#">
+            <span class="curso__selo" aria-hidden="true"></span>
+            <span class="curso__nome">Atendimento ao cliente</span>
+            <span class="curso__detalhe">instituição - carga horária</span>
+          </a>
+        </div>
+
+        <!-- o destino ainda nao existe: a lista de cursos de verdade entra
+             depois, junto com sugerirCursos() -->
+        <a class="botao botao--principal botao--largo" href="#"
+           id="modal-ver-cursos">Ver cursos</a>
+
+        <button type="button" class="botao botao--contorno" id="modal-voltar">
+          Voltar e marcar atividades
+        </button>
+      </div>
+    </div>
 
   </main>
 

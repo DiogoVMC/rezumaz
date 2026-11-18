@@ -16,6 +16,18 @@
      #estado          + #erro-estado
      #escolaridade    + #erro-escolaridade
 
+   Campos que só aparecem depois de a pessoa abrir o bloco deles
+     #recado-local    + #erro-recado-local     (telefone de instituição)
+     #instituicao     + #erro-instituicao      (depois de escolher a escolaridade)
+     #ano-inicio      + #erro-ano-inicio
+     #ano-fim         + #erro-ano-fim          (opcional se marcar "Ainda estou cursando")
+     #pcd-categoria   + #erro-pcd-categoria    (só com a caixa de PCD marcada)
+     #pcd-cid         + #erro-pcd-cid          (opcional, mas o formato é conferido)
+
+   Continuam sem validação, porque são mesmo opcionais:
+     #nome-social, #telefone-recado, #recado-tipo, #recado-nome,
+     #sem-email, #ainda-cursando, #destino, #vaga-pcd, #pcd-adaptacao
+
    Recados gerais ........... #recado-erro  e  #recado-certo
 
    Para esconder e mostrar usamos a classe .oculto (a mesma do visual.js).
@@ -81,6 +93,70 @@ const regrasDosCampos = {
 
   "escolaridade": function (valor) {
     if (valor === "") return "Escolha até onde você estudou. Vale também se ainda estiver estudando.";
+    return "";
+  },
+
+  /* Daqui pra baixo sao campos que so existem quando a pessoa abre o
+     bloco deles. Nao precisam checar se o bloco esta aberto: campo
+     dentro de .oculto nem chega a ser validado. */
+
+  "recado-local": function (valor) {
+    if (valor === "") return "Escreva o nome do lugar que atende o recado.";
+    return "";
+  },
+
+  "instituicao": function (valor) {
+    if (valor === "") return "Escreva onde você estudou. Pode ser a escola, o EJA ou o curso.";
+    return "";
+  },
+
+  "ano-inicio": function (valor) {
+    if (valor === "") return "Escolha o ano em que você começou.";
+    return "";
+  },
+
+  /* O ano de termino muda de sentido com a caixa "Ainda estou cursando":
+     marcada, ele vira previsao de conclusao. A mensagem acompanha. */
+  "ano-fim": function (valor) {
+    const cursando = document.getElementById("ainda-cursando");
+    const aindaCursa = cursando ? cursando.checked : false;
+
+    /* quem ainda estuda pode nao saber quando termina, principalmente
+       no EJA e no supletivo. a previsao fica opcional. so cobra o ano
+       de quem ja terminou */
+    if (valor === "") {
+      return aindaCursa ? "" : "Escolha o ano em que você terminou.";
+    }
+
+    const inicio = document.getElementById("ano-inicio");
+    const comecou = inicio ? Number(inicio.value) : 0;
+    const terminou = Number(valor);
+
+    if (comecou && terminou < comecou) {
+      return "O ano de término não pode ser antes do ano de início.";
+    }
+
+    if (aindaCursa && terminou < new Date().getFullYear()) {
+      return "A previsão precisa ser deste ano pra frente, porque você ainda está cursando.";
+    }
+
+    return "";
+  },
+
+  "pcd-categoria": function (valor) {
+    if (valor === "") return "Escolha a categoria. Sem ela a identificação não vale pra vaga de cota.";
+    return "";
+  },
+
+  /* CID e opcional, entao so confere o formato de quem escreveu alguma
+     coisa. Um codigo da CID-10 e uma letra e dois numeros, e as vezes
+     um ponto e mais um numero depois: H90.3, F84, E11.9. */
+  "pcd-cid": function (valor) {
+    if (valor === "") return "";
+    const formatoDeCid = /^[A-Z]\d{2}(\.\d{1,2})?$/;
+    if (!formatoDeCid.test(valor.toUpperCase())) {
+      return "O CID tem uma letra e dois números, às vezes com ponto e mais um, como H90.3.";
+    }
     return "";
   }
 };

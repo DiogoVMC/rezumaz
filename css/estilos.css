@@ -255,19 +255,8 @@ legend {
   color: var(--texto-apoio);
 }
 
-.oculto {
-  display: none;
-}
-
-.esconder {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
+[tabindex="-1"]:focus {
+  outline: none;
 }
 
 a:focus-visible,
@@ -750,9 +739,7 @@ html {
 }
 
 .proxima-tela {
-  margin-top: 40px;
-  padding-top: 32px;
-  border-top: var(--borda) dashed var(--borda-campo);
+  margin-top: 0;
 }
 
 .campo-par {
@@ -773,6 +760,255 @@ html {
 }
 
 /* --------------- FASE 2 — questionário de atividades --------------- */
+
+#pilulas-frequencia {
+  margin-bottom: 20px;
+}
+
+.pilula--clicavel {
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: var(--borda) solid transparent;
+  /* o texto da pilula nunca quebra no meio: ou cabe inteiro na linha,
+     ou a pilula desce pra proxima */
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.pilula--selecionada {
+  outline: 3px solid var(--cobalto);
+  outline-offset: 2px;
+}
+
+/* ainda sem resposta. precisa ser neutra, senao se confunde com o
+   tom 2, que tambem usa o --claro da area */
+.pilula--sem-resposta {
+  background: var(--branco);
+  border-style: dashed;
+  border-color: var(--borda-campo);
+  color: var(--texto-apoio);
+}
+
+/* quatro tons do mais raro pro mais frequente: quanto mais escuro,
+   mais vezes a pessoa fez aquilo */
+.pilula--tom-1 {
+  background: var(--branco);
+  border: var(--borda) solid var(--escuro);
+  color: var(--tinta);
+}
+
+.pilula--tom-2 {
+  background: var(--claro);
+  border: var(--borda) solid var(--claro);
+  color: var(--tinta);
+}
+
+.pilula--tom-3 {
+  background: var(--vivo);
+  border: var(--borda) solid var(--vivo);
+  color: var(--tinta);
+}
+
+.pilula--tom-4 {
+  background: var(--escuro);
+  border: var(--borda) solid var(--escuro);
+  color: var(--branco);
+}
+
+#opcoes-frequencia {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.opcao-frequencia {
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  padding: 12px 14px;
+  border: var(--borda) solid transparent;
+  border-radius: var(--raio-card);
+  cursor: pointer;
+  transition: transform 0.12s ease;
+}
+
+.opcao-frequencia:not(:disabled):hover {
+  transform: translateY(-2px);
+}
+
+.opcao-frequencia:focus-visible {
+  outline: 3px solid var(--cobalto);
+  outline-offset: 2px;
+}
+
+.opcao-frequencia__texto {
+  display: block;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  line-height: 1.25;
+}
+
+/* ---- a regua de frequencia ----
+   So no alto contraste. Ali os quatro tons viram todos branco e a cor
+   para de dizer qualquer coisa, entao a frequencia vira uma regua no
+   pe da pilula, que enche mais quanto mais vezes a pessoa fez aquilo.
+   No modo normal a cor ja faz esse trabalho e a regua so poluiria.
+
+   Fica por dentro da pilula, entao nao rouba largura e nao quebra as
+   pilulas em uma por linha no celular. Sao duas camadas: o ::before e
+   o trilho inteiro, apagadinho, e o ::after e a parte cheia. As duas
+   usam currentColor, entao a regua acompanha o texto. */
+html.alto-contraste .pilula--respondida,
+html.alto-contraste .opcao-frequencia {
+  position: relative;
+  padding-bottom: 16px;
+}
+
+html.alto-contraste .pilula--respondida::before,
+html.alto-contraste .pilula--respondida::after,
+html.alto-contraste .opcao-frequencia::before,
+html.alto-contraste .opcao-frequencia::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  bottom: 5px;
+  height: 4px;
+  border-radius: var(--raio-redondo);
+  background: currentColor;
+}
+
+/* o trilho tem tamanho fixo de proposito. em porcentagem da pilula,
+   uma pilula curta cheia ficaria do mesmo tamanho de uma comprida pela
+   metade, e a comparacao entre duas pilulas perderia o sentido */
+html.alto-contraste .pilula--respondida::before,
+html.alto-contraste .opcao-frequencia::before {
+  width: 48px;
+  opacity: 0.28;
+}
+
+html.alto-contraste .pilula--respondida::after,
+html.alto-contraste .opcao-frequencia::after {
+  width: 12px;
+}
+
+html.alto-contraste .pilula--tom-2::after,
+html.alto-contraste .opcao-frequencia--tom-2::after {
+  width: 24px;
+}
+
+html.alto-contraste .pilula--tom-3::after,
+html.alto-contraste .opcao-frequencia--tom-3::after {
+  width: 36px;
+}
+
+html.alto-contraste .pilula--tom-4::after,
+html.alto-contraste .opcao-frequencia--tom-4::after {
+  width: 48px;
+}
+
+.opcao-frequencia__dica {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.78125rem;
+  line-height: 1.3;
+}
+
+.opcao-frequencia--tom-1 {
+  background: var(--branco);
+  border: var(--borda) solid var(--escuro);
+}
+
+.opcao-frequencia--tom-2 {
+  background: var(--claro);
+}
+
+.opcao-frequencia--tom-3 {
+  background: var(--vivo);
+}
+
+.opcao-frequencia--tom-4 {
+  background: var(--escuro);
+  color: var(--branco);
+}
+
+/* No celular as pilulas tem texto longo e ocupam uma linha cada, entao
+   a lista sempre vai rolar. Em vez de encolher o texto, as quatro
+   opcoes grudam no rodape: a pessoa rola as pilulas e a frequencia
+   continua ali, sem precisar procurar. */
+@media (max-width: 600px) {
+  #titulo-frequencia {
+    font-size: 1.375rem;
+    margin-bottom: 8px;
+  }
+
+  #ajuda-frequencia {
+    font-size: 0.875rem;
+    line-height: 1.4;
+    margin-bottom: 14px;
+  }
+
+  #pilulas-frequencia {
+    margin-bottom: 14px;
+  }
+
+  #opcoes-frequencia {
+    position: sticky;
+    bottom: 0;
+    z-index: 2;
+    gap: 8px;
+    padding: 12px 0;
+    margin-bottom: 4px;
+    background: var(--branco);
+    box-shadow: 0 -10px 16px -6px rgba(17, 17, 17, 0.14);
+  }
+
+  .opcao-frequencia {
+    padding: 11px 13px;
+  }
+
+  .opcao-frequencia__dica {
+    font-size: 0.75rem;
+    line-height: 1.3;
+  }
+}
+
+/* no celular a pilula encolhe pra caber duas por linha, senao cada
+   uma ocupa uma linha inteira e a frequencia sai da tela */
+@media (max-width: 599px) {
+  .pilula--clicavel {
+    padding: 6px 10px;
+    font-size: 0.75rem;
+  }
+
+  #pilulas-frequencia {
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+
+  .opcao-frequencia {
+    padding: 12px 10px;
+    text-align: center;
+  }
+
+  /* a dica some no celular: ela quebrava em tres linhas e empurrava
+     a frequencia pra fora da tela. os titulos se explicam sozinhos */
+  .opcao-frequencia__dica {
+    display: none;
+  }
+
+  #ajuda-frequencia {
+    margin-bottom: 12px;
+  }
+}
+
+/* na tela larga cabem as quatro numa linha so */
+@media (min-width: 600px) {
+  #opcoes-frequencia {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
 
 .opcao {
   display: block;
@@ -990,6 +1226,10 @@ html {
   --claro: var(--p5-claro); --vivo: var(--p5-vivo); --escuro: var(--p5-escuro);
 }
 
+.area-responsabilidades {
+  --claro: var(--p5-claro); --vivo: var(--p5-vivo); --escuro: var(--p5-escuro);
+}
+
 .recado {
   margin: 0 0 16px;
   padding: 14px 16px;
@@ -1034,24 +1274,18 @@ html {
   overflow-wrap: anywhere;
 }
 
+/* as cinco cores da bandeira do orgulho das pessoas com deficiencia,
+   no proprio fundo. todas passam em contraste com o texto escuro */
 .aviso-acesso {
   margin-top: 12px;
   border-radius: var(--raio-bloco);
   overflow: hidden;
-  background: var(--suave);
-  border: var(--borda) solid var(--linha);
-}
-
-.aviso-acesso__bandeira {
-  height: 10px;
-  background: linear-gradient(
-  100deg,
-  var(--bandeira-vermelho) 0%,   var(--bandeira-vermelho) 20%,
-  var(--bandeira-dourado)  20%,  var(--bandeira-dourado)  40%,
-  var(--bandeira-branco)   40%,  var(--bandeira-branco)   60%,
-  var(--bandeira-azul)     60%,  var(--bandeira-azul)     80%,
-  var(--bandeira-verde)    80%,  var(--bandeira-verde)    100%
-  );
+  background: linear-gradient(100deg,
+  var(--bandeira-vermelho) 0%,
+  var(--bandeira-dourado) 25%,
+  var(--bandeira-branco) 50%,
+  var(--bandeira-azul) 75%,
+  var(--bandeira-verde) 100%);
 }
 
 .aviso-acesso__corpo {
@@ -1245,6 +1479,52 @@ html {
   }
 }
 
+/* -------- MODAL — so o de "sem habilidade" usa isso hoje -------- */
+
+/* fixed cobre a tela inteira, inclusive o que ja rolou. o fundo escuro
+   e so visual: quem nao enxerga ele continua sabendo pelo role=dialog */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--respiro);
+  background: rgba(17, 17, 17, 0.55);
+  overflow-y: auto;
+}
+
+.modal__caixa {
+  width: 100%;
+  max-width: 520px;
+  max-height: 100%;
+  overflow-y: auto;
+  padding: var(--respiro-grande);
+  border: var(--borda) solid var(--linha);
+  border-radius: var(--raio-bloco);
+  background: var(--branco);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.modal__caixa > p {
+  margin: 0;
+}
+
+/* o pedido era um botao bem maior que o resto: e a saida principal */
+#modal-ver-cursos {
+  padding: 18px 24px;
+  font-size: 1.0625rem;
+}
+
+@media (min-width: 900px) {
+  .modal__caixa {
+    padding: 32px;
+  }
+}
+
 /* --------------------- PÁGINAS IMPACTO E EQUIPE --------------------- */
 
 .faixa--suave {
@@ -1339,6 +1619,9 @@ html.alto-contraste .passo__numero,
 html.alto-contraste .aviso-social {
   background: var(--branco);
   border: var(--borda) solid var(--tinta);
+  /* o tom 4 pinta o texto de branco. como aqui o fundo tambem vira
+     branco, sem isso a pilula fica vazia na tela */
+  color: var(--tinta);
 }
 
 html.alto-contraste .opcao__caixa:checked + .opcao__corpo {
@@ -1363,9 +1646,40 @@ html.alto-contraste .recado-vazio {
 
 html.alto-contraste .aviso-acesso {
   background: var(--branco);
-  border-color: var(--tinta);
+  border: var(--borda) solid var(--tinta);
 }
 
-html.alto-contraste .aviso-acesso__bandeira {
-  background: var(--tinta);
+/* No alto contraste todas as pilulas ficam brancas e os quatro tons
+   somem. Quem diz a frequencia ali e o medidor, que e desenhado com
+   currentColor. Aqui so engrossa a borda do que ja foi respondido,
+   pra separar de quem ainda esta sem resposta. */
+html.alto-contraste .pilula--respondida {
+  border-width: 4px;
+}
+
+html.alto-contraste .opcao-frequencia {
+  background: var(--branco);
+  border: var(--borda) solid var(--tinta);
+  color: var(--tinta);
+}
+
+
+/* ------------------- ESCONDER: tem que ser a ultima palavra -------------------- */
+/* Classe utilitaria vence por vir por ultimo, nao por forca. Se subir no
+   arquivo, qualquer componente com display proprio (.campo, .botao) passa
+   a ganhar dela e o elemento nao esconde. */
+
+.oculto {
+  display: none;
+}
+
+.esconder {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
