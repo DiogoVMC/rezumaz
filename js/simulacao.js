@@ -1294,6 +1294,12 @@ function iniciar() {
     voltarDoAviso.addEventListener("click", () => mostrarEtapa(2, true));
   }
 
+  let botaoBaixar = document.getElementById("baixar-curriculo");
+
+  if (botaoBaixar) {
+    botaoBaixar.addEventListener("click", () => window.print());
+  }
+
   let links = document.querySelectorAll("a");
 
   for (let i = 0; i < links.length; i++) {
