@@ -507,6 +507,18 @@ function habilidadesDoCurriculo() {
 }
 
 
+/* as acoes do dados.js comecam minusculas porque foram escritas pra vir
+   emendadas na competencia. no curriculo elas comecam frase, entao a
+   primeira letra sobe */
+function comMaiuscula(texto) {
+  if (!texto) {
+    return "";
+  }
+
+  return texto.charAt(0).toUpperCase() + texto.slice(1);
+}
+
+
 function responsabilidadesDoCurriculo() {
   let lista = [];
 
@@ -514,9 +526,7 @@ function responsabilidadesDoCurriculo() {
     let item = acharAtividade(marcadas[i].id);
 
     if (item && !item.area) {
-      // a acao foi escrita pra vir depois de "Competencia —", entao
-      // comeca minuscula. aqui ela e a linha inteira
-      lista.push(item.acao.charAt(0).toUpperCase() + item.acao.slice(1));
+      lista.push(comMaiuscula(item.acao));
     }
   }
 
@@ -533,7 +543,7 @@ function escreverHabilidades(lista, habilidades) {
 
     forte.textContent = habilidades[i].competencia;
     item.appendChild(forte);
-    item.appendChild(document.createTextNode(" — " + habilidades[i].acao));
+    item.appendChild(document.createTextNode(" - " + comMaiuscula(habilidades[i].acao)));
 
     lista.appendChild(item);
   }
@@ -643,6 +653,19 @@ function preencherDadosDaFolhaFinal() {
   }
 
   document.getElementById("final-cidade").textContent = ondeMora;
+
+  // a idade vem la da etapa 1. pra vaga de aprendiz ela conta, entao
+  // sai na folha. se a pessoa nao respondeu, a linha nem aparece
+  let idade = valorDoCampo("idade");
+  let linhaIdade = document.getElementById("folha-idade");
+
+  linhaIdade.textContent = idade ? idade + " anos" : "";
+
+  if (idade) {
+    linhaIdade.classList.remove("oculto");
+  } else {
+    linhaIdade.classList.add("oculto");
+  }
 
   let formacao = montarFormacao();
   let linhaFormacao = document.getElementById("final-formacao");
@@ -789,6 +812,54 @@ function calcularAderencia(idDoDestino) {
 }
 
 
+/* ---- o card de curso do aviso de aderencia ----
+   Monta pelo array cursos[] do dados.js, filtrando pelo destino que a
+   pessoa escolheu. E uma div e nao um link porque a parceria com as
+   instituicoes ainda nao existe: o nome do curso ja serve pra pessoa
+   saber o que procurar, e um link que nao leva a lugar nenhum seria
+   pior do que nao ter link. */
+function montarCartaDeCurso(curso) {
+  let carta = document.createElement("div");
+  carta.className = "curso " + curso.classe;
+
+  let selo = document.createElement("span");
+  selo.className = "curso__selo";
+  selo.setAttribute("aria-hidden", "true");
+
+  let nome = document.createElement("span");
+  nome.className = "curso__nome";
+  nome.textContent = curso.nome;
+
+  let detalhe = document.createElement("span");
+  detalhe.className = "curso__detalhe";
+  detalhe.textContent = "Curso gratuito · em breve no rezumaz";
+
+  carta.appendChild(selo);
+  carta.appendChild(nome);
+  carta.appendChild(detalhe);
+
+  return carta;
+}
+
+
+function montarCursosDoAviso(idDoDestino) {
+  let lugar = document.getElementById("cursos-do-aviso");
+
+  if (!lugar) {
+    return;
+  }
+
+  lugar.textContent = "";
+
+  let doDestino = cursos.filter(c => c.destino === idDoDestino);
+
+  for (let i = 0; i < doDestino.length; i++) {
+    lugar.appendChild(montarCartaDeCurso(doDestino[i]));
+  }
+}
+
+
+
 // o visual.js ja recalcula quando a pessoa troca o select. isso aqui
 // e pra hora de entrar na etapa, que nao dispara change nenhum
 function conferirAderencia() {
@@ -798,7 +869,13 @@ function conferirAderencia() {
     return;
   }
 
-  window.avisarAderencia(calcularAderencia(escolhido.value) === "fraca");
+  let fraca = calcularAderencia(escolhido.value) === "fraca";
+
+  if (fraca) {
+    montarCursosDoAviso(escolhido.value);
+  }
+
+  window.avisarAderencia(fraca);
 }
 
 
@@ -835,6 +912,155 @@ function fecharAvisoSemHabilidades() {
     modal.classList.add("oculto");
   }
 }
+
+
+/* ---- Baixar para IA ----
+   Markdown, e nao PDF nem imagem, porque a ideia e colar esse arquivo
+   num chat de IA pra ela ajudar a adaptar o curriculo. O # e o - dizem
+   pra maquina o que e titulo e o que e item sem precisar adivinhar
+   pela posicao na pagina, que e onde o texto extraido de PDF se perde. */
+function linhasDoCabecalhoParaIa() {
+  let linhas = [];
+  let nome = valorDoCampo("nome-curriculo");
+
+  linhas.push("# " + (nome || "Curriculo"));
+  linhas.push("");
+
+  if (marcado("nome-social")) {
+    linhas.push("Nome social.");
+  }
+
+  let idade = valorDoCampo("idade");
+
+  if (idade) {
+    linhas.push("Idade: " + idade + " anos");
+  }
+
+  let contato = juntarPedacos([valorDoCampo("telefone"), valorDoCampo("email")]);
+
+  if (contato) {
+    linhas.push("Contato: " + contato);
+  }
+
+  let cidade = valorDoCampo("cidade");
+  let uf = valorDoCampo("estado");
+
+  if (cidade || uf) {
+    linhas.push("Cidade: " + (cidade && uf ? cidade + ", " + uf : cidade || uf));
+  }
+
+  if (marcado("vaga-pcd")) {
+    linhas.push("Pessoa com deficiencia: " + juntarPedacos([
+      textoDoSelect("pcd-categoria"),
+      valorDoCampo("pcd-cid") ? "CID " + valorDoCampo("pcd-cid") : ""
+    ]));
+
+    let recurso = valorDoCampo("pcd-adaptacao");
+
+    if (recurso) {
+      linhas.push("Recurso para entrevista: " + recurso);
+    }
+  }
+
+  return linhas;
+}
+
+
+function textoDoCurriculoParaIa() {
+  let linhas = linhasDoCabecalhoParaIa();
+
+  let escolhido = document.getElementById("destino");
+  let destino = escolhido && escolhido.value
+    ? destinos.find(d => d.id === escolhido.value)
+    : null;
+
+  if (destino) {
+    linhas.push("");
+    linhas.push("## Objetivo");
+    linhas.push("");
+    linhas.push(destino.objetivo);
+  }
+
+  let habilidades = habilidadesDoCurriculo();
+
+  if (habilidades.length > 0) {
+    linhas.push("");
+    linhas.push("## Habilidades e competencias");
+    linhas.push("");
+
+    for (let i = 0; i < habilidades.length; i++) {
+      linhas.push("- **" + habilidades[i].competencia + "**: " + comMaiuscula(habilidades[i].acao));
+    }
+  }
+
+  let praticas = responsabilidadesDoCurriculo();
+
+  if (praticas.length > 0) {
+    linhas.push("");
+    linhas.push("## Experiencia pratica");
+    linhas.push("");
+
+    for (let i = 0; i < praticas.length; i++) {
+      linhas.push("- " + praticas[i]);
+    }
+  }
+
+  let formacao = montarFormacao();
+
+  if (formacao) {
+    linhas.push("");
+    linhas.push("## Formacao");
+    linhas.push("");
+    linhas.push(formacao);
+  }
+
+  linhas.push("");
+  linhas.push("---");
+  linhas.push("");
+  linhas.push("Curriculo montado no rezumaz a partir de atividades do dia a dia.");
+
+  return linhas.join("\n");
+}
+
+
+/* o navegador nao deixa gravar arquivo direto. o caminho e montar o
+   conteudo na memoria, criar um link invisivel apontando pra ele,
+   clicar nesse link por codigo e jogar fora em seguida */
+function baixarArquivo(nomeDoArquivo, conteudo) {
+  let bolha = new Blob([conteudo], { type: "text/markdown;charset=utf-8" });
+  let endereco = URL.createObjectURL(bolha);
+  let link = document.createElement("a");
+
+  link.href = endereco;
+  link.download = nomeDoArquivo;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(endereco);
+}
+
+
+function nomeDoArquivoDeCurriculo() {
+  let nome = valorDoCampo("nome-curriculo");
+
+  if (!nome) {
+    return "curriculo-rezumaz.md";
+  }
+
+  let limpo = nome.toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
+  return "curriculo-" + (limpo || "rezumaz") + ".md";
+}
+
+
+function baixarParaIa() {
+  baixarArquivo(nomeDoArquivoDeCurriculo(), textoDoCurriculoParaIa());
+}
+
 
 
 function mostrarTelaDeAtividades() {
@@ -1292,6 +1518,21 @@ function iniciar() {
 
   if (voltarDoAviso) {
     voltarDoAviso.addEventListener("click", () => mostrarEtapa(2, true));
+  }
+
+  // o visual.js ja cuida de mostrar e esconder o aviso de aderencia.
+  // aqui so enche ele com o curso da area, que depende do dados.js
+  let destinoEscolhido = document.getElementById("destino");
+
+  if (destinoEscolhido) {
+    destinoEscolhido.addEventListener("change", evento =>
+      montarCursosDoAviso(evento.currentTarget.value));
+  }
+
+  let botaoParaIa = document.getElementById("baixar-para-ia");
+
+  if (botaoParaIa) {
+    botaoParaIa.addEventListener("click", baixarParaIa);
   }
 
   let botaoBaixar = document.getElementById("baixar-curriculo");

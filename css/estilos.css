@@ -335,6 +335,183 @@ html {
   }
 }
 
+/* --------------------- PÁGINA INICIAL --------------------- */
+
+/* a citacao de abertura e a da meta do ODS. a barra lateral e o recuo
+   fazem o trabalho que as aspas fariam, sem sujar o texto */
+.citacao {
+  margin: 0 0 24px;
+  padding: 2px 0 2px 18px;
+  border-left: 4px solid var(--coral);
+}
+
+.citacao__texto {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.3px;
+}
+
+.citacao__autor {
+  margin: 10px 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--texto-apoio);
+}
+
+/* a obra ocupa a largura toda da faixa e respira sozinha. o credito
+   fica colado embaixo, que e onde ele tem que estar */
+.obra {
+  margin: 0;
+}
+
+.obra__imagem {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--raio-bloco);
+  background: var(--suave);
+}
+
+.obra__credito {
+  margin: 12px 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--texto-apoio);
+}
+
+@media (min-width: 760px) {
+  .citacao {
+    padding-left: 24px;
+  }
+
+  .citacao__texto {
+    font-size: 1.5rem;
+  }
+}
+
+/* as tres cartas da proposta. sao a mesma carta do questionario: fundo
+   no tom da cor, quadradinho de marcacao e o tique branco que aparece
+   quando esta marcada. aqui marcar quer dizer escolher qual texto o
+   painel de baixo mostra.
+
+   O texto fica num painel so, de largura inteira, embaixo das tres. Era
+   a unica forma de todas as cartas terem sempre o mesmo tamanho sem
+   sobrar bloco de cor vazio, e de quebra o texto ganha linha larga em
+   vez de uma coluna estreita de um terco da tela. */
+.carta-texto {
+  border-radius: var(--raio-card);
+  background: var(--claro);
+  transition: background var(--tempo) ease;
+}
+
+.carta-texto--aberta {
+  background: var(--vivo);
+}
+
+.carta-texto__titulo {
+  margin: 0;
+}
+
+.carta-texto__botao {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  width: 100%;
+  min-height: 92px;
+  padding: 14px;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.carta-texto__quadrado {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border: var(--borda) solid var(--escuro);
+  border-radius: 8px;
+  background: var(--branco);
+  transition: background var(--tempo) ease, border-color var(--tempo) ease;
+}
+
+.carta-texto--aberta .carta-texto__quadrado {
+  background: var(--escuro);
+  border-color: var(--escuro);
+}
+
+.carta-texto__tique {
+  display: block;
+  width: 15px;
+  height: 15px;
+  transform: scale(0);
+  transition: transform 0.2s ease;
+}
+
+.carta-texto--aberta .carta-texto__tique {
+  transform: scale(1);
+}
+
+.carta-texto__texto {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.carta-texto__dica {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.painel-proposta {
+  margin-top: 10px;
+  padding: 18px 20px;
+  border-radius: var(--raio-bloco);
+  border: var(--borda) solid var(--linha);
+  background: var(--branco);
+}
+
+.painel-proposta__texto > p {
+  margin: 0 0 12px;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--texto-apoio);
+}
+
+.painel-proposta__texto > p:last-child {
+  margin-bottom: 0;
+}
+
+/* a linha larga do painel cansa a leitura se correr a tela inteira */
+@media (min-width: 900px) {
+  .painel-proposta {
+    padding: 24px 28px;
+  }
+
+  .painel-proposta__texto {
+    max-width: 68ch;
+  }
+}
+
+html.alto-contraste .carta-texto {
+  background: var(--branco);
+  border: var(--borda) solid var(--tinta);
+}
+
+html.alto-contraste .carta-texto--aberta {
+  border-width: 4px;
+}
+
 /* --------------------- BARRA DE ACESSIBILIDADE --------------------- */
 
 .barra-acesso {
@@ -725,6 +902,12 @@ html {
   background: var(--coral-aviso);
 }
 
+/* o curso entra embaixo do texto do aviso, com uma folga
+   pra nao colar na ultima linha */
+#cursos-do-aviso:not(:empty) {
+  margin-top: 12px;
+}
+
 .aviso__titulo {
   margin: 0 0 5px;
   font-size: 0.8125rem;
@@ -851,15 +1034,14 @@ html {
 }
 
 /* ---- a regua de frequencia ----
-   So no alto contraste. Ali os quatro tons viram todos branco e a cor
-   para de dizer qualquer coisa, entao a frequencia vira uma regua no
-   pe da pilula, que enche mais quanto mais vezes a pessoa fez aquilo.
-   No modo normal a cor ja faz esse trabalho e a regua so poluiria.
+   So no alto contraste. Ali os quatro tons ficam todos brancos e a cor
+   para de dizer qualquer coisa, entao a frequencia vira uma regua no pe
+   da pilula, que enche mais quanto mais vezes a pessoa fez aquilo.
+   No modo normal a cor ja faz esse trabalho e a regua so atrapalharia.
 
    Fica por dentro da pilula, entao nao rouba largura e nao quebra as
-   pilulas em uma por linha no celular. Sao duas camadas: o ::before e
-   o trilho inteiro, apagadinho, e o ::after e a parte cheia. As duas
-   usam currentColor, entao a regua acompanha o texto. */
+   pilulas em uma por linha no celular. Sao duas camadas: o ::before e o
+   trilho inteiro, apagadinho, e o ::after e a parte cheia. */
 html.alto-contraste .pilula--respondida,
 html.alto-contraste .opcao-frequencia {
   position: relative;
@@ -1012,6 +1194,7 @@ html.alto-contraste .opcao-frequencia--tom-4::after {
 
 .opcao {
   display: block;
+  height: 100%;
   cursor: pointer;
 }
 
@@ -1026,12 +1209,16 @@ html.alto-contraste .opcao-frequencia--tom-4::after {
   white-space: nowrap;
 }
 
+/* min-height e nao height: no celular estreito o texto de algumas
+   atividades passa de 138px, e com altura fixa mais overflow:hidden a
+   frase era cortada no meio. agora a carta cresce, e como a grade
+   estica os irmaos as duas da mesma linha continuam do mesmo tamanho */
 .opcao__corpo {
-  height: 138px;
+  min-height: 138px;
+  height: 100%;
   display: flex;
   gap: 12px;
   align-items: flex-start;
-  overflow: hidden;
   padding: 14px;
   border-radius: var(--raio-card);
   background: var(--claro);
@@ -1148,14 +1335,13 @@ html.alto-contraste .opcao-frequencia--tom-4::after {
 }
 
 #tela-frequencia .opcao__corpo {
-  height: auto;
   min-height: 64px;
   align-items: center;
 }
 
 @media (min-width: 900px) {
   .opcao__corpo {
-    height: 108px;
+    min-height: 108px;
   }
 }
 
@@ -1664,6 +1850,135 @@ html.alto-contraste .opcao-frequencia {
 }
 
 
+/* no alto contraste o --coral vira branco, entao a barra da citacao
+   sumiria no fundo branco. e o unico sinal de que aquilo e citacao */
+html.alto-contraste .citacao {
+  border-left-color: var(--tinta);
+}
+
+html.alto-contraste .obra__imagem {
+  border: var(--borda) solid var(--tinta);
+}
+
+/* ------------------------- IMPRESSAO -------------------------
+   O botao "Baixar meu curriculo" chama window.print(). Sem estas
+   regras a impressora recebe a pagina inteira: barra de acessibilidade,
+   menu, as quatro etapas, os botoes, os cursos e o rodape.
+
+   Aqui some tudo e fica so a folha. E display:none mesmo, e nao
+   visibility:hidden, porque o que esta invisivel continua ocupando
+   altura e empurrava uma segunda folha em branco pra impressora. */
+@page {
+  size: A4;
+  margin: 14mm;
+}
+
+@media print {
+  .barra-acesso,
+  .cabecalho,
+  .rodape,
+  .etapa-cabeca,
+  .navegacao-etapa,
+  .botoes-dupla,
+  .acoes-discretas,
+  .modal,
+  #titulo-etapa-4,
+  #etapa-1,
+  #etapa-2,
+  #etapa-3,
+  #aviso-aprendiz,
+  #bloco-cursos,
+  #recado-dos-botoes {
+    display: none;
+  }
+
+  /* as faixas tem linha divisoria entre si. no papel viram risco solto */
+  .faixa--linha,
+  .faixa--suave {
+    border: 0;
+    background: none;
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    background: var(--branco);
+  }
+
+  .faixa,
+  .conteudo {
+    margin: 0;
+    padding: 0;
+    max-width: none;
+  }
+
+  .duas-colunas {
+    display: block;
+  }
+
+  #folha-final {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: var(--branco);
+  }
+
+  /* o curriculo sobra espaco numa A4, entao o corpo pode ser 11pt, que
+     e o tamanho normal de documento. o que apertava antes era medo de
+     passar de uma folha, e isso ja esta resolvido escondendo o resto */
+  #folha-final .folha__nome {
+    margin: 0 0 10pt;
+    padding-bottom: 8pt;
+    border-bottom: 1pt solid #BBBBBB;
+    font-size: 21pt;
+    letter-spacing: -0.3pt;
+  }
+
+  #folha-final .folha__contato {
+    margin: 0 0 2pt;
+    font-size: 10.5pt;
+    line-height: 1.5;
+    color: var(--tinta);
+  }
+
+  #folha-final .folha__secao {
+    margin-top: 16pt;
+    page-break-inside: avoid;
+  }
+
+  /* o rotulo da secao em cinza claro some na impressora. no papel ele
+     precisa de preto e de um pouco mais de corpo */
+  #folha-final .folha__rotulo {
+    margin: 0 0 6pt;
+    font-size: 10pt;
+    letter-spacing: 1pt;
+    color: var(--tinta);
+  }
+
+  #folha-final .folha__texto,
+  #folha-final .folha__lista {
+    font-size: 11pt;
+    line-height: 1.5;
+  }
+
+  #folha-final .folha__lista li {
+    margin-bottom: 5pt;
+    page-break-inside: avoid;
+  }
+
+  #folha-final .folha__lista li:last-child {
+    margin-bottom: 0;
+  }
+
+  #folha-final a {
+    color: var(--tinta);
+    text-decoration: none;
+  }
+}
+
 /* ------------------- ESCONDER: tem que ser a ultima palavra -------------------- */
 /* Classe utilitaria vence por vir por ultimo, nao por forca. Se subir no
    arquivo, qualquer componente com display proprio (.campo, .botao) passa
@@ -1682,20 +1997,4 @@ html.alto-contraste .opcao-frequencia {
   overflow: hidden;
   clip-path: inset(50%);
   white-space: nowrap;
-}
-
-@media print {
-  .barra-acesso,
-  .cabecalho,
-  .rodape,
-  #etapa-4 .etapa-cabeca,
-  #etapa-4 .titulo-um,
-  #etapa-4 .pilha,
-  #etapa-4 .acoes-discretas {
-    display: none;
-  }
-
-  #etapa-4 .duas-colunas {
-    display: block;
-  }
 }

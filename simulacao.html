@@ -504,10 +504,14 @@
               <select class="campo__entrada" id="escolaridade" name="escolaridade" required
                       aria-controls="bloco-formacao" aria-describedby="erro-escolaridade">
                 <option value="">Escolha uma opção</option>
-                <option value="fundamental">Ensino fundamental</option>
-                <option value="medio">Ensino médio</option>
-                <option value="tecnico">Curso técnico</option>
-                <option value="superior">Ensino superior</option>
+                <option value="fundamental-incompleto">Ensino fundamental incompleto</option>
+                <option value="fundamental">Ensino fundamental completo</option>
+                <option value="medio-incompleto">Ensino médio incompleto</option>
+                <option value="medio">Ensino médio completo</option>
+                <option value="tecnico-incompleto">Curso técnico incompleto</option>
+                <option value="tecnico">Curso técnico completo</option>
+                <option value="superior-incompleto">Ensino superior incompleto</option>
+                <option value="superior">Ensino superior completo</option>
               </select>
               <span class="campo__erro oculto" id="erro-escolaridade" role="alert"></span>
             </div>
@@ -570,9 +574,13 @@
               <p class="aviso__texto">
                 Você pode se candidatar do mesmo jeito, e o currículo sai normal. Só
                 que com o que a gente tem até aqui, dá pra mostrar pouca coisa dessa
-                área. Um curso gratuito de poucas horas já muda isso. Veja algumas opções:
+                área. Um curso gratuito de poucas horas já muda isso:
               </p>
-              <!-- adicionar card de cursos disponiveis-->
+              <!-- O js/simulacao.js enche isto com o curso de cursos[] que
+                   combina com a área escolhida. É div e não link de propósito:
+                   a parceria com os cursos ainda não existe, então não tem
+                   pra onde levar e um link morto seria pior que nenhum. -->
+              <div class="grade" id="cursos-do-aviso"></div>
             </div>
 
             <div class="opcao-destaque">
@@ -674,6 +682,8 @@
             <p class="folha__contato oculto" id="folha-nome-social">Nome social</p>
             <p class="folha__contato" id="final-contato">(18) 99999-9999 · ana.souza@email.com</p>
             <p class="folha__contato" id="final-cidade">Araçatuba, SP</p>
+            <!-- a idade so sai se a pessoa tiver respondido na etapa 1 -->
+            <p class="folha__contato oculto" id="folha-idade"></p>
             <!-- A identificação de PCD, quando a pessoa escolhe ter, fecha o
                  cabeçalho. Nunca no meio das habilidades. -->
             <p class="folha__contato" id="folha-pcd">Pessoa com deficiência · auditiva · CID H90.3</p>
@@ -712,7 +722,7 @@
               </button>
             </div>
 
-            <p class="apoio">
+            <p class="apoio" id="recado-dos-botoes">
               A versão normal é a que você imprime e entrega na mão. A versão para
               IA é texto simples, do jeito que os sistemas de triagem dos sites de
               vaga conseguem ler.
