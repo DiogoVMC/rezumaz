@@ -13,4 +13,7 @@ RM 573249 - Gabriel Antônio Gonçalves
 RM 572414 - Rafael Simeoni Pereira
 
 LINK DO VÍDEO PITCH
-[COLAR AQUI O LINK DO VÍDEO PITCH]
+https://youtu.be/aiN0_gpT_-M
+
+SITE NO AR
+https://rezumaz.netlify.app/

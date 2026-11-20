@@ -152,7 +152,13 @@ novo.
 
 ## Link do pitch
 
-`_____`
+https://youtu.be/aiN0_gpT_-M
+
+---
+
+## Site no ar
+
+https://rezumaz.netlify.app/
 
 ---
 
