@@ -1870,7 +1870,7 @@ html.alto-contraste .obra__imagem {
    altura e empurrava uma segunda folha em branco pra impressora. */
 @page {
   size: A4;
-  margin: 14mm;
+  margin: 0;
 }
 
 @media print {
@@ -1919,7 +1919,7 @@ html.alto-contraste .obra__imagem {
 
   #folha-final {
     margin: 0;
-    padding: 0;
+    padding: 14mm;
     border: 0;
     border-radius: 0;
     box-shadow: none;

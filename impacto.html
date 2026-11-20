@@ -52,49 +52,120 @@
 
   <main id="conteudo">
 
-    <!-- ===== O QUE MUDA ===== -->
+    <!-- ===== ABERTURA ===== -->
     <section class="faixa" aria-labelledby="titulo-impacto">
-      <div class="conteudo">
-        <p class="rotulo">Impacto</p>
+      <div class="conteudo conteudo--estreito">
         <h1 class="titulo-um" id="titulo-impacto">
           Quem achava que não tinha <span class="marca-texto">nada pra escrever</span> passa a ter um currículo
         </h1>
         <p class="paragrafo">
           O rezumaz não cria experiência: ele ajuda a pessoa a enxergar e a
-          escrever a que ela já tem. O primeiro currículo sai pronto em poucos
-          minutos, sem cadastro e sem custo.
+          escrever a que ela já tem. Mas o efeito não para nela. Quando o
+          trabalho invisível vira texto, muda também quem contrata e quem
+          oferece formação.
         </p>
       </div>
     </section>
 
-    <!-- ===== QUEM SENTE A DIFERENÇA ===== -->
+    <!-- ===== QUEM SENTE A DIFERENÇA =====
+         Mesma carta da home: escolhe qual texto o painel de baixo mostra. -->
     <section class="faixa faixa--linha" aria-labelledby="titulo-quem">
       <div class="conteudo">
         <h2 class="titulo-dois" id="titulo-quem">Quem sente a diferença</h2>
 
-        <div class="pilha">
-          <div class="bloco bloco--contorno">
-            <h3 class="titulo-tres">Jovem sem emprego formal</h3>
-            <p class="apoio">
-              Cuidar de irmão, cozinhar para a casa ou vender doce viram
-              habilidades escritas, como atendimento, cuidado infantil e
-              preparo de refeições.
+        <div class="grade grade--tres">
+
+          <article class="carta-texto cor-1">
+            <h3 class="carta-texto__titulo">
+              <button class="carta-texto__botao" type="button" id="botao-jovem"
+                      aria-expanded="true" aria-controls="texto-jovem">
+                <span class="carta-texto__quadrado">
+                  <svg class="carta-texto__tique" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF"
+                       stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"
+                       aria-hidden="true" focusable="false"><path d="M4 12.5l5.2 5.2L20 7"></path></svg>
+                </span>
+                <span class="carta-texto__texto">
+                  O jovem
+                  <span class="carta-texto__dica">Sai da estaca zero.</span>
+                </span>
+              </button>
+            </h3>
+          </article>
+
+          <article class="carta-texto cor-5">
+            <h3 class="carta-texto__titulo">
+              <button class="carta-texto__botao" type="button" id="botao-empresa"
+                      aria-expanded="true" aria-controls="texto-empresa">
+                <span class="carta-texto__quadrado">
+                  <svg class="carta-texto__tique" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF"
+                       stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"
+                       aria-hidden="true" focusable="false"><path d="M4 12.5l5.2 5.2L20 7"></path></svg>
+                </span>
+                <span class="carta-texto__texto">
+                  Quem contrata
+                  <span class="carta-texto__dica">Enxerga quem estava invisível.</span>
+                </span>
+              </button>
+            </h3>
+          </article>
+
+          <article class="carta-texto cor-3">
+            <h3 class="carta-texto__titulo">
+              <button class="carta-texto__botao" type="button" id="botao-curso"
+                      aria-expanded="true" aria-controls="texto-curso">
+                <span class="carta-texto__quadrado">
+                  <svg class="carta-texto__tique" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF"
+                       stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"
+                       aria-hidden="true" focusable="false"><path d="M4 12.5l5.2 5.2L20 7"></path></svg>
+                </span>
+                <span class="carta-texto__texto">
+                  Instituições de curso
+                  <span class="carta-texto__dica">Chegam em quem precisa, na hora certa.</span>
+                </span>
+              </button>
+            </h3>
+          </article>
+
+        </div>
+
+        <div class="painel-proposta">
+          <div class="painel-proposta__texto" id="texto-jovem">
+            <p>
+              Quem nunca teve carteira assinada chega na vaga sem nada escrito e
+              desaparece na primeira peneira. Com o currículo na mão ela passa a
+              existir no processo: tem o que enviar, tem o que dizer na
+              entrevista e descobre que aquilo que fazia em casa tem nome.
+            </p>
+            <p>
+              A mudança não é conseguir a vaga. É poder disputar.
             </p>
           </div>
-          <div class="bloco bloco--contorno">
-            <h3 class="titulo-tres">Quem não tem endereço fixo ou e-mail</h3>
-            <p class="apoio">
-              O formulário aceita o endereço de um equipamento público de
-              referência e deixa marcar &ldquo;não tenho e-mail&rdquo;, para que
-              isso não impeça ninguém de se candidatar.
+
+          <div class="painel-proposta__texto" id="texto-empresa">
+            <p>
+              Exigir experiência prévia é o filtro mais barato de aplicar e o
+              mais caro de errar: ele descarta junto quem nunca teve chance e
+              quem já sabe fazer. Um currículo que descreve cuidado, organização,
+              atendimento e rotina dá ao contratante um critério melhor do que
+              tempo de carteira.
+            </p>
+            <p>
+              Isso pesa principalmente nas vagas de aprendiz e de primeiro
+              emprego, onde, por definição, ninguém tem experiência formal.
+              Hoje essas vagas são preenchidas quase no escuro.
             </p>
           </div>
-          <div class="bloco bloco--contorno">
-            <h3 class="titulo-tres">Pessoa com deficiência e quem usa nome social</h3>
-            <p class="apoio">
-              As duas informações são opcionais e ficam sob escolha da pessoa.
-              A identificação de deficiência só é necessária para vagas
-              reservadas pela cota.
+
+          <div class="painel-proposta__texto" id="texto-curso">
+            <p>
+              O curso gratuito existe e a pessoa não sabe que existe. Aqui a
+              sugestão aparece no momento exato em que a lacuna aparece na tela:
+              a pessoa escolheu uma área, o currículo mostrou que tem pouca
+              coisa dela, e o curso entra como o próximo passo óbvio.
+            </p>
+            <p>
+              Para a instituição parceira, é alcance de quem realmente vai usar,
+              sem anúncio e sem disputa de atenção.
             </p>
           </div>
         </div>
@@ -113,8 +184,8 @@
             <p class="apoio">
               A meta fala em aumentar o número de jovens e adultos com
               competências para o trabalho. O rezumaz faz a pessoa reconhecer as
-              competências que já tem e sugere cursos gratuitos para
-              desenvolver outras.
+              competências que já tem e aponta cursos gratuitos para desenvolver
+              outras.
             </p>
           </div>
           <div class="bloco bloco--contorno">
@@ -140,12 +211,12 @@
           Evoluções que o grupo decidiu deixar fora desta entrega:
         </p>
 
-        <div class="pilha">
+        <div class="grade grade--tres">
           <div class="bloco bloco--contorno">
             <h3 class="titulo-tres">Conta de usuário</h3>
             <p class="apoio">
-              Salvar o currículo e voltar depois. Isso precisa de servidor, e
-              hoje nada sai do aparelho.
+              Salvar o currículo e voltar depois. Precisa de servidor, que o
+              protótipo não tem.
             </p>
           </div>
           <div class="bloco bloco--contorno">
@@ -156,10 +227,10 @@
             </p>
           </div>
           <div class="bloco bloco--contorno">
-            <h3 class="titulo-tres">Parceria com cursos gratuitos</h3>
+            <h3 class="titulo-tres">Parceria com cursos</h3>
             <p class="apoio">
-              Trocar as sugestões por cursos reais, com instituição e carga
-              horária confirmadas.
+              Trocar as sugestões por cursos reais, com instituição, carga
+              horária e inscrição confirmadas.
             </p>
           </div>
         </div>
@@ -171,10 +242,11 @@
   <footer class="rodape">
     <div class="conteudo rodape__linha">
       <p>rezumaz · Global Solution 2026-2 · FIAP</p>
-      <p>Projeto acadêmico · nenhum dado sai do aparelho</p>
+      <p>Projeto acadêmico</p>
     </div>
   </footer>
 
   <script src="js/visual.js"></script>
+  <script src="js/inicio.js"></script>
 </body>
 </html>

@@ -1,0 +1,16 @@
+GLOBAL SOLUTION 2026/2 · CITIZENTECH · FIAP
+1º ano · Engenharia de Software ON · turma 1ESOA
+
+NOME DO GRUPO
+rezumaz
+
+PROJETO
+rezumaz - plataforma que transforma a experiência do dia a dia em um currículo pronto
+
+INTEGRANTES
+RM 569373 - Diogo Victor Martins
+RM 573249 - Gabriel Antônio Gonçalves
+RM 572414 - Rafael Simeoni Pereira
+
+LINK DO VÍDEO PITCH
+[COLAR AQUI O LINK DO VÍDEO PITCH]
